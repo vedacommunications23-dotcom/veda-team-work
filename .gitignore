@@ -1,0 +1,7 @@
+# Keep repo clean — only publish website files
+*.py
+.DS_Store
+Thumbs.db
+*.zip
+.env
+.vscode/

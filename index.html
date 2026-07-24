@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veda Communications — All-in-One Platform</title>
+<title>Veda Cibil Services — Credit Consulting</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f4f4f0;--surface:#ffffff;--surface2:#f8f8f6;
-  --border:#e5e7eb;--border2:#d1d5db;
-  --text:#1a1a1a;--text2:#6b7280;--text3:#9ca3af;
-  --navy:#1a1a2e;--navy-light:#2a2a4e;
-  --accent:#f5c518;--accent-dark:#d4a800;
+  --bg:#f4f8fb;--surface:#ffffff;--surface2:#eef5fa;
+  --border:#d7e3ee;--border2:#c9d6e2;
+  --text:#142033;--text2:#5b6b7c;--text3:#8a9aab;
+  --navy:#0a2744;--navy-light:#123a5c;
+  --accent:#e8b923;--accent-dark:#c99a12;
+  --brand:#1a8fc4;--brand-deep:#0b4f78;
   --green:#1D9E75;--gd:#0F6E56;--gbg:#EAF3DE;--gt:#3B6D11;
   --abg:#FAEEDA;--at:#854F0B;--bbg:#E6F1FB;--bt:#185FA5;
   --gray:#F1EFE8;--grayt:#5F5E5A;--rbg:#FCEBEB;--rt:#A32D2D;
@@ -25,22 +25,24 @@
 body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;display:block!important;width:100%;overflow-x:hidden}
 .hidden{display:none!important}
 
-/* Login */
-.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy)}
-.login-card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:44px 40px;width:400px;max-width:95vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.login-logo{width:60px;height:60px;background:var(--accent);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-.login-logo svg{width:32px;height:32px;filter:brightness(0)}
-.login-title{font-size:20px;font-weight:700;color:#e2e8f0;margin-bottom:4px}
-.login-sub{font-size:13px;color:#64748b;margin-bottom:28px}
+/* Login — official brand */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(155deg,#0a2744 0%,#0b4f78 45%,#1a8fc4 100%)}
+.login-card{background:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:40px 36px;width:420px;max-width:95vw;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.login-logo{width:auto;height:auto;background:transparent;border-radius:0;display:block;margin:0 auto 16px}
+.login-logo img{height:72px;width:auto;display:block;margin:0 auto}
+.login-logo svg{display:none}
+.login-title{font-size:20px;font-weight:800;color:#0a2744;margin-bottom:4px;letter-spacing:.02em}
+.login-sub{font-size:13px;color:#5b6b7c;margin-bottom:24px}
 .login-form{display:flex;flex-direction:column;gap:14px;text-align:left}
-.login-form label{font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
-.login-form select,.login-form input{width:100%;padding:11px 14px;font-size:14px;border:1px solid #334155;border-radius:var(--r);background:#0f172a;color:#e2e8f0;font-family:inherit}
-.login-form select:focus,.login-form input:focus{outline:none;border-color:var(--green)}
-.login-btn{margin-top:4px;padding:13px;font-size:14px;font-weight:600;background:var(--navy);color:#fff;border:none;border-radius:var(--r);cursor:pointer;font-family:inherit;transition:background .15s}
-.login-btn:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.login-form label{font-size:11px;font-weight:800;color:#0b4f78;text-transform:uppercase;letter-spacing:.06em}
+.login-form select,.login-form input{width:100%;padding:11px 14px;font-size:14px;border:1px solid #c9d6e2;border-radius:4px;background:#f4f8fb;color:#142033;font-family:inherit}
+.login-form select:focus,.login-form input:focus{outline:2px solid rgba(26,143,196,.35);border-color:#1a8fc4;background:#fff}
+.login-btn{margin-top:4px;padding:13px;font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#0a2744;color:#fff;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:background .15s}
+.login-btn:hover{background:#1a8fc4;transform:none}
+.login-btn.secondary{background:transparent;border:1px solid #c9d6e2;color:#0a2744}
 
 /* Sync bar */
-.sync-bar{background:var(--surface);border-bottom:.5px solid var(--border);padding:3px 24px;display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text3)}
+.sync-bar{background:#0a2744;border-bottom:1px solid rgba(255,255,255,.08);padding:4px 24px;display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,.65)}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);flex-shrink:0;transition:background .3s}
 .sync-dot.online{background:var(--accent)}.sync-dot.syncing{background:#F0A500;animation:pulse 1s infinite}.sync-dot.error{background:#E24B4A}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -131,50 +133,6 @@ label{font-size:12px;font-weight:500;color:var(--text2)}
 input,select,textarea{width:100%;padding:9px 11px;font-size:13px;border:.5px solid var(--border2);border-radius:var(--r);background:var(--surface2);color:var(--text);font-family:inherit}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy);background:var(--surface);box-shadow:0 0 0 3px rgba(26,26,46,0.08)}
 textarea{resize:vertical;min-height:70px}
-
-/* CIBIL Analyzer — dark theme */
-.analyzer-wrap{background:#0f172a;border-radius:var(--rl);padding:24px;border:.5px solid var(--border)}
-.analyzer-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px}
-@media(max-width:700px){.analyzer-grid{grid-template-columns:1fr}}
-.az-card{background:#1e293b;border-radius:14px;padding:20px;border:1px solid #334155}
-.az-card h2{font-size:13px;color:#94a3b8;margin-bottom:14px;font-weight:600}
-.az-tab-bar{display:flex;gap:8px;margin-bottom:14px}
-.az-tab-btn{flex:1;padding:8px;border:1px solid #334155;border-radius:8px;background:#0f172a;color:#64748b;font-size:12px;cursor:pointer;transition:all .2s;font-family:inherit}
-.az-tab-btn.active{background:#0ea5e9;border-color:#0ea5e9;color:#fff;font-weight:600}
-.drop-zone{border:2px dashed #334155;border-radius:10px;padding:30px 20px;text-align:center;cursor:pointer;transition:all .2s;background:#0f172a;display:flex;flex-direction:column;align-items:center;gap:8px}
-.drop-zone:hover,.drop-zone.dragover{border-color:#38bdf8;background:#0c1a2e}
-.drop-zone .dz-icon{font-size:2.2rem}.drop-zone .dz-title{font-size:13px;color:#cbd5e1;font-weight:600}.drop-zone .dz-sub{font-size:12px;color:#475569}
-.drop-zone input[type=file]{display:none}
-.file-preview{display:none;background:#0f172a;border-radius:8px;padding:12px 14px;border:1px solid #334155;align-items:center;gap:12px}
-.file-preview.visible{display:flex}
-.fp-icon{font-size:1.5rem}.fp-info{flex:1}.fp-name{font-size:13px;color:#e2e8f0;font-weight:600}.fp-size{font-size:12px;color:#64748b;margin-top:2px}
-.fp-remove{background:none;border:none;color:#ef4444;font-size:1.1rem;cursor:pointer}
-.az-textarea{width:100%;height:200px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:12px;padding:12px;resize:vertical;font-family:monospace;line-height:1.5}
-.az-textarea:focus{outline:none;border-color:#38bdf8}
-.az-tip{font-size:11px;color:#475569;margin-top:8px;line-height:1.5}
-.az-btn{width:100%;margin-top:14px;padding:13px;background:linear-gradient(135deg,#0ea5e9,#6366f1);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s;font-family:inherit}
-.az-btn:hover{opacity:.88}.az-btn:disabled{opacity:.38;cursor:not-allowed}
-.az-settings{display:flex;flex-direction:column;gap:12px}
-.score-band{background:#0f172a;border-radius:8px;padding:12px;font-size:12px;line-height:2.1;color:#e2e8f0;border:1px solid #334155}
-.az-label{font-size:12px;color:#94a3b8;font-weight:500}
-.az-select{width:100%;background:#0f172a;border:1px solid #334155;border-radius:7px;color:#e2e8f0;padding:9px;font-size:13px;font-family:inherit}
-.az-select:focus{outline:none;border-color:#38bdf8}
-.loading-bar{display:none;background:#1e293b;border-radius:12px;padding:22px;text-align:center;border:1px solid #334155;margin-bottom:16px}
-.loading-bar.visible{display:block}
-.spinner{display:inline-block;width:24px;height:24px;border:3px solid #334155;border-top-color:#38bdf8;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:8px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading-bar p{color:#64748b;font-size:13px}
-.output-card{background:#1e293b;border-radius:14px;padding:22px;border:1px solid #334155;display:none;margin-bottom:16px}
-.output-card.visible{display:block}
-.output-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-.output-header h2{font-size:13px;color:#94a3b8;font-weight:600}
-.az-action-btns{display:flex;gap:8px;flex-wrap:wrap}
-.az-action-btn{padding:6px 14px;background:#334155;border:none;border-radius:7px;color:#e2e8f0;font-size:12px;cursor:pointer;transition:background .2s;font-family:inherit}
-.az-action-btn:hover{background:#475569}.az-action-btn.active-edit{background:#0ea5e9;color:#fff}
-/* ── FIXED: result box and edit area — always dark theme ── */
-.result-box{background:#0f172a;border-radius:10px;padding:18px;font-size:13px;line-height:2;white-space:pre-wrap;font-family:'Segoe UI',sans-serif;border:1px solid #334155;color:#e2e8f0 !important}
-.result-edit{width:100%;background:#0f172a !important;border-radius:10px;padding:18px;font-size:13px;line-height:2;font-family:'Segoe UI',sans-serif;border:2px solid #38bdf8 !important;color:#e2e8f0 !important;resize:vertical;min-height:300px;outline:none !important;-webkit-text-fill-color:#e2e8f0 !important}
-.result-edit::placeholder{color:#475569}
 
 /* Sub-tab underline animation */
 .sub-tab{position:relative;}
@@ -659,7 +617,7 @@ textarea{resize:vertical;min-height:70px}
   color: #1a1a1a;
 }
 #module-attendance .att-topbar {
-  background: #1a1a2e;
+  background: #0a2744;
   padding: 0 24px;
   height: 56px;
   display: flex; align-items: center; justify-content: space-between;
@@ -683,16 +641,16 @@ textarea{resize:vertical;min-height:70px}
   background: none; border: none; color: rgba(255,255,255,0.55);
   cursor: pointer; font-size: 15px; padding: 0 3px; transition: color 0.15s;
 }
-#module-attendance .month-nav button:hover { color: #f5c518; }
+#module-attendance .month-nav button:hover { color: #e8b923; }
 #module-attendance .month-label {
   font-weight: 700; font-size: 13px; color: #fff; min-width: 118px; text-align: center;
 }
 #module-attendance .att-btn-accent {
-  padding: 7px 14px; border-radius: 7px; font-size: 12px; font-weight: 700;
+  padding: 7px 14px; border-radius: 4px; font-size: 11px; font-weight: 800;
   cursor: pointer; border: none; font-family: inherit; transition: all 0.15s;
-  background: #f5c518; color: #1a1a2e; letter-spacing: 0.02em;
+  background: #e8b923; color: #0a2744; letter-spacing: 0.04em; text-transform: uppercase;
 }
-#module-attendance .att-btn-accent:hover { background: #e0b010; transform: translateY(-1px); }
+#module-attendance .att-btn-accent:hover { background: #f5c84a; transform: none; }
 #module-attendance .att-btn-outline {
   padding: 7px 14px; border-radius: 7px; font-size: 12px; font-weight: 600;
   cursor: pointer; font-family: inherit; transition: all 0.15s;
@@ -856,6 +814,30 @@ textarea{resize:vertical;min-height:70px}
     .salary-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
+
+
+/* Attendance official register theme */
+#module-attendance{background:#f4f8fb!important;min-height:100vh;}
+#module-attendance .att-register-banner{background:#fff;border:1px solid #d7e3ee;border-top:4px solid #0a2744;margin:0 24px 16px;padding:18px 22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;}
+#module-attendance .att-register-banner h2{margin:0;font-size:18px;color:#0a2744;letter-spacing:.04em;text-transform:uppercase;}
+#module-attendance .att-register-banner p{margin:4px 0 0;font-size:12px;color:#5b6b7c;line-height:1.5;}
+#module-attendance .att-register-meta{text-align:right;font-size:12px;color:#0b4f78;font-weight:700;}
+#module-attendance .att-header{background:#0a2744!important;}
+#module-attendance .att-section,#module-attendance .salary-section{border:1px solid #d7e3ee;border-radius:4px;overflow:hidden;background:#fff;}
+#module-attendance thead th{background:#123a5c!important;color:#fff!important;}
+#module-attendance .sum-card{border-radius:4px;border:1px solid #d7e3ee;}
+#module-attendance .sum-card.total::before{background:#1a8fc4;}
+#module-attendance .sum-card.salary::before{background:#0b4f78;}
+#module-attendance .sum-card.total .sum-val{color:#1a8fc4;}
+#module-attendance .sum-card.salary .sum-val{color:#0b4f78;}
+#module-attendance .export-bar{background:#fff;border:1px solid #d7e3ee;border-radius:4px;}
+#module-attendance .att-logo-icon{background:#1a8fc4!important;border-radius:4px!important;}
+@media print{
+  #module-attendance .att-topbar .att-btn-outline,
+  #module-attendance .att-topbar .att-btn-accent,
+  #module-attendance .export-btns{display:none!important;}
+  #module-attendance .att-register-banner{border:1px solid #000;}
+}
 
 /* ═══════════ CRM MODULE — FULL LIGHT THEME ═══════════ */
 
@@ -1119,20 +1101,411 @@ textarea{resize:vertical;min-height:70px}
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
+<style id="veda-public-css">
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap');
+:root{
+  --brand:#1a8fc4;
+  --brand-deep:#0b4f78;
+  --navy:#0a2744;
+  --navy-2:#123a5c;
+  --gold:#e8b923;
+  --gold-soft:#f5c84a;
+  --ink:#142033;
+  --muted:#5b6b7c;
+  --line:#d7e3ee;
+  --paper:#f4f8fb;
+  --white:#ffffff;
+  --danger:#b42318;
+}
+#public-site{min-height:100vh;background:var(--paper);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;}
+#public-site *{box-sizing:border-box;}
+.pub-topbar{background:var(--navy);color:rgba(255,255,255,.92);font-size:12px;padding:8px 28px;display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;align-items:center;}
+.pub-topbar a{color:#fff;text-decoration:none;font-weight:600;}
+.pub-topbar span{opacity:.9;}
+.pub-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 28px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(10,39,68,.06);}
+.pub-brand{display:flex;align-items:center;gap:12px;cursor:pointer;}
+.pub-brand img{height:52px;width:auto;display:block;}
+.pub-brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.pub-brand-text strong{font-size:15px;font-weight:800;color:var(--navy);letter-spacing:.02em;}
+.pub-brand-text small{font-size:11px;color:var(--brand);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+.pub-links{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.pub-links a{color:var(--navy);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:9px 12px;border-radius:4px;}
+.pub-links a:hover{background:rgba(26,143,196,.1);color:var(--brand-deep);}
+.pub-login-link{background:var(--navy)!important;color:#fff!important;}
+.pub-login-link:hover{background:var(--brand-deep)!important;}
+
+/* Hero — official split */
+.pub-hero-wrap{display:grid;grid-template-columns:3fr 1fr;min-height:560px;background:var(--navy);}
+.pub-hero-copy{padding:48px 44px 44px;color:#fff;position:relative;overflow:hidden;}
+.pub-hero-copy::after{content:"";position:absolute;right:-80px;top:0;bottom:0;width:160px;background:linear-gradient(105deg,transparent,rgba(26,143,196,.25));transform:skewX(-8deg);}
+.pub-eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.pub-hero-copy h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(28px,3.4vw,42px);line-height:1.15;font-weight:700;margin:0 0 14px;max-width:100%;}
+.pub-hero-rule{width:72px;height:3px;background:var(--gold);margin:0 0 18px;}
+.pub-lead{font-size:15px;line-height:1.65;color:rgba(255,255,255,.88);max-width:720px;margin:0 0 16px;}.pub-hero-points{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:0 0 22px;max-width:760px;}.pub-hero-points li{list-style:none;font-size:13px;line-height:1.45;color:rgba(255,255,255,.9);padding-left:16px;position:relative;}.pub-hero-points li::before{content:'';position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:1px;background:var(--gold);}.pub-stats-row{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;}.pub-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:10px 14px;min-width:120px;}.pub-stat strong{display:block;font-size:18px;color:var(--gold);font-weight:800;}.pub-stat span{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.7);}.pub-cards.four{grid-template-columns:repeat(4,1fr);}
+.pub-cta-row{display:flex;flex-wrap:wrap;gap:12px;}
+.pub-btn{padding:13px 22px;border-radius:3px;border:none;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:inherit;}
+.pub-btn.primary{background:var(--gold);color:var(--navy);}
+.pub-btn.primary:hover{background:var(--gold-soft);}
+.pub-btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:#fff;}
+.pub-btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+.pub-btn.solid{background:var(--brand);color:#fff;}
+.pub-hero-visual{position:relative;min-height:420px;background:#0d3558 center/cover no-repeat;overflow:hidden;}
+.pub-hero-visual img.founder-hero{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:420px;}
+.pub-hero-badge{position:absolute;left:20px;bottom:20px;background:rgba(10,39,68,.88);color:#fff;padding:14px 16px;border-left:3px solid var(--gold);max-width:260px;}
+.pub-hero-badge strong{display:block;font-size:13px;margin-bottom:4px;}
+.pub-hero-badge span{font-size:12px;opacity:.85;}
+
+.pub-service-tabs{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-bottom:4px solid #c8102e;}
+.pub-service-tabs button{border:none;background:#eef3f7;padding:18px 12px;font-family:inherit;font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:var(--navy);cursor:pointer;border-right:1px solid #dbe5ee;text-align:left;}
+.pub-service-tabs button:last-child{border-right:none;}
+.pub-service-tabs button:hover,.pub-service-tabs button.active{background:#fff;color:var(--brand-deep);box-shadow:inset 0 -3px 0 var(--gold);}
+
+.pub-section{max-width:1100px;margin:0 auto;padding:56px 24px 72px;}
+.pub-section h2{font-family:'Source Serif 4',Georgia,serif;font-size:32px;color:var(--navy);margin:0 0 10px;}
+.pub-section .sec-sub{color:var(--muted);margin:0 0 28px;font-size:15px;max-width:640px;}
+.pub-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+.pub-card{background:#fff;border:1px solid var(--line);padding:24px;border-top:3px solid var(--brand);box-shadow:0 8px 24px rgba(10,39,68,.04);}
+.pub-card h3{font-size:16px;margin:0 0 8px;color:var(--navy);}
+.pub-card p{font-size:14px;color:var(--muted);margin:0;line-height:1.55;}
+
+.about-grid{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start;}
+.about-photo{width:100%;border-radius:4px;display:block;border:1px solid var(--line);box-shadow:0 12px 30px rgba(10,39,68,.12);}
+.about-copy h3{font-size:18px;color:var(--navy);margin:22px 0 8px;}
+.about-copy p{color:var(--muted);line-height:1.7;margin:0 0 12px;}
+.contact-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;}
+.contact-strip div{background:#fff;border:1px solid var(--line);padding:16px;}
+.contact-strip strong{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-deep);margin-bottom:6px;}
+.contact-strip span,.contact-strip a{font-size:14px;color:var(--ink);text-decoration:none;font-weight:600;}
+
+.pub-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;background:#fff;border:1px solid var(--line);padding:24px;}
+.pub-form label{font-size:12px;font-weight:700;color:var(--navy);display:flex;flex-direction:column;gap:6px;}
+.pub-form label.full{grid-column:1/-1;}
+.pub-form input,.pub-form textarea{padding:11px 12px;border:1px solid #c9d6e2;border-radius:3px;font:inherit;background:#fff;}
+.pub-form input:focus,.pub-form textarea:focus{outline:2px solid rgba(26,143,196,.35);border-color:var(--brand);}
+
+.pub-knowledge{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.pub-knowledge article{background:#fff;border:1px solid var(--line);padding:20px;border-left:3px solid var(--brand);}
+.pub-knowledge h3{font-size:15px;margin:0 0 8px;color:var(--navy);}
+.pub-knowledge p{font-size:13px;color:var(--muted);margin:0;line-height:1.6;}
+
+.pay-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;}
+.pay-box{background:#fff;border:1px solid var(--line);padding:22px;}
+.pay-box h3{margin:0 0 12px;color:var(--navy);font-size:16px;}
+.pay-box p,.pay-box li{font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 8px;}
+.pay-box ul{margin:0;padding-left:18px;}
+.pay-qr{margin-top:8px;text-align:center;}
+.pay-qr img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:4px;}
+.upi-chip{display:inline-block;background:#eef8fc;color:var(--brand-deep);font-weight:800;padding:8px 12px;border-radius:3px;font-family:ui-monospace,monospace;font-size:14px;margin-top:6px;}
+
+.pub-footer{background:var(--navy);color:rgba(255,255,255,.88);padding:40px 28px 24px;margin-top:20px;}
+.pub-footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px;}
+.pub-footer h4{color:var(--gold);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px;}
+.pub-footer p,.pub-footer a{color:rgba(255,255,255,.86);font-size:13px;line-height:1.6;text-decoration:none;margin:0 0 6px;display:block;}
+.pub-footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.75;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+
+.chatbot-toggle{position:fixed;right:22px;bottom:22px;width:56px;height:56px;border-radius:50%;border:none;background:var(--brand);color:#fff;font-size:22px;cursor:pointer;z-index:90;box-shadow:0 8px 24px rgba(0,0,0,.25);}
+.chatbot-panel{position:fixed;right:22px;bottom:90px;width:340px;max-width:calc(100vw - 32px);background:#fff;border:1px solid var(--line);border-radius:8px;z-index:90;box-shadow:0 16px 40px rgba(0,0,0,.18);overflow:hidden;display:flex;flex-direction:column;max-height:70vh;}
+.chatbot-head{background:var(--navy);color:#fff;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;align-items:center;}
+.chatbot-head button{background:none;border:none;color:#fff;cursor:pointer;font-size:16px;}
+.chatbot-msgs{padding:12px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:8px;}
+.bot-msg,.user-msg{padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.45;}
+.bot-msg{background:#eef3f7;color:var(--ink);}
+.user-msg{background:#e6f1fb;color:var(--brand-deep);align-self:flex-end;}
+.chatbot-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px;}
+.chatbot-quick button{font-size:11px;padding:6px 8px;border-radius:16px;border:1px solid #d1d5db;background:#fff;cursor:pointer;font-family:inherit;}
+.chatbot-input{display:flex;gap:6px;padding:10px 12px;border-top:1px solid var(--line);}
+.chatbot-input input{flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font:inherit;}
+.chatbot-input button{padding:8px 12px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-weight:700;cursor:pointer;font-family:inherit;}
+
+body.partner-mode .team-only,
+body.partner-mode #module-invoice,
+body.partner-mode #module-crm,
+body.partner-mode #module-attendance,
+body.partner-mode #module-partners,
+body.partner-mode .mod-tab[onclick*="invoice"],
+body.partner-mode .mod-tab[onclick*="crm"],
+body.partner-mode .mod-tab[onclick*="attendance"],
+body.partner-mode .mod-tab[onclick*="partners"]{display:none!important;}
+body.partner-mode #ch-tabs-wrap{display:none!important;}
+body.partner-mode #tab-reports{display:none!important;}
+body.partner-mode .sub-tab[onclick*="reports"]{display:none!important;}
+
+@media(max-width:900px){
+  .pub-hero-wrap,.about-grid,.pay-grid,.pub-knowledge,.pub-footer-grid,.contact-strip,.pub-cards,.pub-cards.four,.pub-hero-points{grid-template-columns:1fr;}
+  .pub-service-tabs{grid-template-columns:1fr 1fr;}
+  .pub-form{grid-template-columns:1fr;}
+  .pub-nav{flex-direction:column;align-items:flex-start;}
+  .pub-hero-copy{padding:40px 24px;}
+}
+</style>
+
 <body>
 
+<!-- PUBLIC SITE -->
+<div id="public-site">
+  <div class="pub-topbar">
+    <span>Veda Cibil Services · Credit Score · Dispute Experts</span>
+    <span>
+      <a href="tel:9441471959">+91 94414 71959</a> ·
+      <a href="tel:9849283860">+91 98492 83860</a> ·
+      <a href="mailto:info@vedacibilservices.com">info@vedacibilservices.com</a>
+    </span>
+  </div>
+
+  <header class="pub-nav">
+    <div class="pub-brand" onclick="showPublic('home')">
+      <img src="logo.png" alt="Veda Cibil Services logo">
+      <div class="pub-brand-text">
+        <strong>VEDA CIBIL SERVICES</strong>
+        <small>Credit Score · Dispute Experts</small>
+      </div>
+    </div>
+    <nav class="pub-links">
+      <a href="#" onclick="showPublic('home');return false;">Home</a>
+      <a href="#" onclick="showPublic('about');return false;">About</a>
+      <a href="#" onclick="showPublic('request');return false;">Request Report</a>
+      <a href="#" onclick="showPublic('knowledge');return false;">Knowledge</a>
+      <a href="#" onclick="showPublic('payments');return false;">Payments</a>
+      <a href="#" onclick="showPublic('contact');return false;">Contact</a>
+      <a href="#" class="pub-login-link" onclick="showLogin();return false;">Login</a>
+    </nav>
+  </header>
+
+  <section class="pub-page" id="pub-home">
+    <div class="pub-hero-wrap">
+      <div class="pub-hero-copy">
+        <p class="pub-eyebrow">Since 2020 · Veda Communications · Credit consulting</p>
+        <h1>CIBIL experts for individual &amp; commercial credit solutions</h1>
+        <div class="pub-hero-rule"></div>
+        <p class="pub-lead">Veda Cibil Services (Veda Communications) has been helping clients since <strong>2020</strong> with professional credit-report analysis, dispute resolution, and credit advisory. We have cleared and guided <strong>many client issues</strong> — from personal CIBIL problems to commercial / company credit-report challenges — with clear process and accountable follow-up.</p>
+        <div class="pub-stats-row">
+          <div class="pub-stat"><strong>2020→</strong><span>Serving since</span></div>
+          <div class="pub-stat"><strong>Individual</strong><span>&amp; commercial</span></div>
+          <div class="pub-stat"><strong>Analysis</strong><span>Dispute · Advisory</span></div>
+          <div class="pub-stat"><strong>Partners</strong><span>Channel network</span></div>
+        </div>
+        <ul class="pub-hero-points">
+          <li><strong>Individual CIBIL services</strong> — personal report review, overdue/written-off guidance, score improvement planning, loan &amp; card readiness.</li>
+          <li><strong>Commercial / company reports</strong> — business credit report analysis, facility review support, and risk clarification for firms.</li>
+          <li><strong>Expert report analysis</strong> — open &amp; closed accounts, DPD, settlements, guarantor exposure explained in plain language.</li>
+          <li><strong>Dispute resolution</strong> — support for incorrect entries, wrong accounts, balance mismatches, with documentation guidance.</li>
+          <li><strong>Credit adviser support</strong> — practical next steps before you apply for loans, cards, or restructuring options.</li>
+          <li><strong>Partner-led delivery</strong> — channel partners get live case visibility for their own clients only.</li>
+        </ul>
+        <div class="pub-cta-row">
+          <button class="pub-btn primary" onclick="showPublic('request')">Request CIBIL analysis</button>
+          <button class="pub-btn ghost" onclick="showPublic('knowledge')">Knowledge centre</button>
+          <button class="pub-btn ghost" onclick="showPublic('payments')">Pay via UPI</button>
+        </div>
+      </div>
+      <div class="pub-hero-visual">
+        <img class="founder-hero" src="founder.png" alt="Kotturi Karunakar — Founder, Veda Cibil Services">
+        <div class="pub-hero-badge">
+          <strong>Kotturi Karunakar</strong>
+          <span>Founder · Credit adviser · Dispute &amp; analysis lead</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-service-tabs">
+      <button type="button" class="active" onclick="showPublic('request')">CIBIL Report Analysis</button>
+      <button type="button" onclick="showPublic('knowledge')">Knowledge Centre</button>
+      <button type="button" onclick="showPublic('payments')">Payments / UPI</button>
+      <button type="button" onclick="showPublic('about')">About &amp; Leadership</button>
+      <button type="button" onclick="showPublic('contact')">Contact / Complaints</button>
+    </div>
+
+    <div class="pub-section">
+      <h2>Our services in detail</h2>
+      <p class="sec-sub">From 2020 onwards, Veda Communications has focused on transparent credit consulting for individuals, businesses, and channel partners across India.</p>
+      <div class="pub-cards four">
+        <div class="pub-card"><h3>Individual CIBIL</h3><p>Personal report analysis, negative account mapping, payment priority advice, and preparation before personal loans or credit cards.</p></div>
+        <div class="pub-card"><h3>Commercial credit</h3><p>Company / commercial report review, facility and repayment pattern clarity, and guidance for business credit health.</p></div>
+        <div class="pub-card"><h3>Report analysis</h3><p>Expert reading of bureau data — overdue, written-off, settled, DPD, enquiries, and ownership roles — with a written action plan.</p></div>
+        <div class="pub-card"><h3>Dispute resolution</h3><p>Structured support to correct wrong entries with proofs (statements, NOC, receipts) and follow-through until status updates.</p></div>
+      </div>
+      <div class="pub-cards" style="margin-top:18px;">
+        <div class="pub-card"><h3>Credit adviser</h3><p>Honest counselling on what lenders typically check, what to fix first, and when it is sensible to apply again.</p></div>
+        <div class="pub-card"><h3>Case tracking</h3><p>Every client is tracked internally until Informed/Closed — partners see only their referred cases in live sync.</p></div>
+        <div class="pub-card"><h3>Cleared client issues</h3><p>Years of practical work since 2020 helping customers understand and resolve credit-report blockers with documented process.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pub-page hidden" id="pub-about">
+    <div class="pub-section">
+      <h2>About Veda Cibil Services</h2>
+      <p class="sec-sub">A credit consulting practice focused on CIBIL clarity, dispute guidance, and partner-led client support.</p>
+      <div class="about-grid">
+        <img class="about-photo" src="founder.png" alt="Kotturi Karunakar — Founder of Veda Cibil Services">
+        <div class="about-copy">
+          <p>Since <strong>2020</strong>, Veda Cibil Services (Veda Communications) has provided structured credit-report analysis and clearance guidance for <strong>individual and commercial</strong> clients. We specialise in report analysis, dispute resolution, and credit advisory — and have helped clear many client issues with documented follow-up until cases are informed or closed.</p>
+          <h3>Founder — Kotturi Karunakar</h3>
+          <p><strong>Kotturi Karunakar</strong> leads Veda Cibil Services with a practical, client-first approach: accurate reading of the credit report, honest explanation of risk, and a clear action plan. Clients receive professional communication via phone, email, and WhatsApp — with team follow-up through our secure client tracker.</p>
+          <h3>What we stand for</h3>
+          <p>Transparency, documentation discipline, and respect for customer privacy. We do not promise overnight score miracles — we focus on correct process and measurable case progress.</p>
+          <div class="contact-strip">
+            <div><strong>Email</strong><a href="mailto:info@vedacibilservices.com">info@vedacibilservices.com</a></div>
+            <div><strong>Mobile</strong><span><a href="tel:9441471959">94414 71959</a><br><a href="tel:9849283860">98492 83860</a></span></div>
+            <div><strong>Office</strong><span>Uppal Khalsa, Hyderabad<br>Telangana 500039</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pub-page hidden" id="pub-request">
+    <div class="pub-section" style="max-width:760px;">
+      <h2>Request CIBIL report &amp; analysis</h2>
+      <p class="sec-sub">Submit your details. WhatsApp will open with a ready message to our team for report analysis.</p>
+      <form id="cibil-request-form" class="pub-form" onsubmit="submitCibilRequest(event)">
+        <label>Full Name<input required name="fullName" placeholder="As on PAN / CIBIL"></label>
+        <label>Mail ID<input required type="email" name="email" placeholder="you@email.com"></label>
+        <label>Mobile number<input required name="mobile" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile"></label>
+        <label>PAN number<input required name="pan" maxlength="10" placeholder="ABCDE1234F" style="text-transform:uppercase"></label>
+        <label>Date of birth<input required type="date" name="dob"></label>
+        <label class="full">Pincode / Address<textarea required name="address" rows="3" placeholder="Pincode and full address"></textarea></label>
+        <label class="full"><button type="submit" class="pub-btn solid" style="width:100%;">Send details on WhatsApp →</button></label>
+      </form>
+    </div>
+  </section>
+
+  <section class="pub-page hidden" id="pub-knowledge">
+    <div class="pub-section">
+      <h2>Knowledge Centre</h2>
+      <p class="sec-sub">Practical CIBIL education for customers — written for Indian credit reports and lending practice.</p>
+      <div class="pub-knowledge">
+        <article><h3>What is a CIBIL score?</h3><p>A three-digit number (typically 300–900) summarising your credit history for lenders. Higher scores usually mean better loan/card eligibility and rates.</p></article>
+        <article><h3>Score bands (practical view)</h3><p>Below 650 is weak for most unsecured credit; 650–699 is borderline; 700–749 is workable for many products; 750+ is generally preferred by prime lenders.</p></article>
+        <article><h3>Overdue vs written-off</h3><p>Overdue means unpaid dues on an open account. Written-off means the lender has treated the debt as a loss — it remains a serious negative even after settlement in many cases.</p></article>
+        <article><h3>Settled accounts</h3><p>“Settled” often means you paid less than the full outstanding. It can still restrict approvals with strict lenders compared to a clean closed status.</p></article>
+        <article><h3>DPD / delay history</h3><p>Days Past Due shows how late payments were. Even closed accounts can carry historical DPD that lenders review.</p></article>
+        <article><h3>Guarantor / joint liability</h3><p>If you are a guarantor or joint holder, that exposure can affect your profile even when you are not the primary borrower.</p></article>
+        <article><h3>When to dispute</h3><p>Dispute wrong identity matches, accounts not yours, incorrect balances, or already-paid dues still showing overdue — with proof (statements, NOC, payment receipts).</p></article>
+        <article><h3>Documents we usually need</h3><p>Full name, email, mobile, PAN, DOB, pincode/address, and your latest CIBIL PDF when available. Extra proof helps for dispute cases.</p></article>
+        <article><h3>Enquiries</h3><p>Too many recent loan/card enquiries can temporarily pressure score and lender confidence. Apply only when needed.</p></article>
+        <article><h3>How our analysis helps</h3><p>We map open/closed negatives, prioritise what to fix first, and track case status with you until informed/closed — including partner-referred clients.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pub-page hidden" id="pub-payments">
+    <div class="pub-section">
+      <h2>Payments</h2>
+      <p class="sec-sub">Pay consultation / analysis fees via UPI (any app) or Federal Bank transfer to Veda Communications.</p>
+      <div class="pay-grid">
+        <div class="pay-box">
+          <h3>Bank transfer — Federal Bank</h3>
+          <ul>
+            <li><strong>Account name:</strong> VEDA COMMUNICATIONS</li>
+            <li><strong>Bank:</strong> Federal Bank · Uppal Kalan</li>
+            <li><strong>Account number:</strong> 15830200006362</li>
+            <li><strong>IFSC:</strong> FDRL0001583</li>
+            <li><strong>Account type:</strong> Current Account</li>
+          </ul>
+          <p style="margin-top:14px;">After payment, share the UTR / screenshot on WhatsApp to <a href="https://wa.me/919441471959">94414 71959</a> with your name.</p>
+        </div>
+        <div class="pay-box">
+          <h3>UPI / Scan &amp; Pay</h3>
+          <p>UPI ID</p>
+          <div class="upi-chip">bi2vedacomm730@fbl</div>
+          <div class="pay-qr">
+            <img src="qr-pay.png" alt="Veda Communications UPI QR code">
+          </div>
+          <p style="margin-top:10px;font-size:12px;">Accepts PhonePe, Google Pay, BHIM and other UPI apps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pub-page hidden" id="pub-contact">
+    <div class="pub-section">
+      <h2>Contact &amp; complaints</h2>
+      <p class="sec-sub">Reach our office for service queries, payment confirmation, or formal complaints.</p>
+      <div class="contact-strip">
+        <div><strong>Phone</strong><span><a href="tel:9441471959">+91 94414 71959</a><br><a href="tel:9849283860">+91 98492 83860</a></span></div>
+        <div><strong>Email</strong><a href="mailto:info@vedacibilservices.com">info@vedacibilservices.com</a></div>
+        <div><strong>WhatsApp</strong><a href="https://wa.me/919441471959">Chat on WhatsApp</a></div>
+      </div>
+      <div class="pay-box" style="margin-top:22px;">
+        <h3>Registered / communication address</h3>
+        <p><strong>VEDA COMMUNICATIONS</strong><br>
+        F.No. 18-24, Prashanth Nagar Main Road,<br>
+        Near Pista House, Uppal Khalsa,<br>
+        Telangana, India – 500039</p>
+        <p>Branch reference: Federal Bank, Uppal Kalan</p>
+        <p style="margin-top:12px;">For complaints, email <a href="mailto:info@vedacibilservices.com">info@vedacibilservices.com</a> with your full name, mobile, and case details. We aim to acknowledge within 2 working days.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pub-footer">
+    <div class="pub-footer-grid">
+      <div>
+        <h4>Veda Cibil Services</h4>
+        <p>Credit score analysis and dispute experts serving clients and channel partners.</p>
+        <p>Founder: Kotturi Karunakar</p>
+        <p>Domain: vedacibilservices.com</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:9441471959">+91 94414 71959</a>
+        <a href="tel:9849283860">+91 98492 83860</a>
+        <a href="mailto:info@vedacibilservices.com">info@vedacibilservices.com</a>
+      </div>
+      <div>
+        <h4>Office</h4>
+        <p>F.No. 18-24, Prashanth Nagar Main Road,<br>Near Pista House, Uppal Khalsa,<br>Telangana 500039</p>
+      </div>
+    </div>
+    <div class="pub-footer-bottom">
+      <span>© 2026 Veda Communications / Veda Cibil Services</span>
+      <span>UPI: bi2vedacomm730@fbl</span>
+    </div>
+  </footer>
+
+  <button type="button" id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open chat">💬</button>
+  <div id="chatbot-panel" class="chatbot-panel hidden">
+    <div class="chatbot-head">Veda Assistant <button type="button" onclick="toggleChatbot()">✕</button></div>
+    <div class="chatbot-msgs" id="chatbot-msgs">
+      <div class="bot-msg">Namaste! I can help with CIBIL basics, payments, or guide you to request a report analysis.</div>
+    </div>
+    <div class="chatbot-quick">
+      <button type="button" onclick="chatQuick('What is CIBIL score?')">CIBIL score</button>
+      <button type="button" onclick="chatQuick('How do I request analysis?')">Request analysis</button>
+      <button type="button" onclick="chatQuick('Payment details')">Payments</button>
+      <button type="button" onclick="chatQuick('Office address')">Address</button>
+    </div>
+    <form class="chatbot-input" onsubmit="chatSend(event)">
+      <input id="chatbot-text" placeholder="Type a message…" autocomplete="off">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
 <!-- LOGIN -->
-<div class="login-screen" id="login-screen">
+<div class="login-screen hidden" id="login-screen">
   <div class="login-card">
-    <div class="login-logo"><svg viewBox="0 0 19 19" fill="none"><rect x="2" y="2" width="6.5" height="6.5" rx="1.5" fill="white"/><rect x="10.5" y="2" width="6.5" height="6.5" rx="1.5" fill="white" opacity=".65"/><rect x="2" y="10.5" width="6.5" height="6.5" rx="1.5" fill="white" opacity=".65"/><rect x="10.5" y="10.5" width="6.5" height="6.5" rx="1.5" fill="white" opacity=".4"/></svg></div>
-    <div class="login-title">Veda Communications</div>
-    <div class="login-sub">All-in-One CIBIL Platform — Sign in to continue</div>
+    <div class="login-logo"><img src="logo.png" alt="Veda Cibil Services"></div>
+    <div class="login-title">Veda Cibil Services</div>
+    <div class="login-sub">Official team &amp; channel partner portal</div>
     <div class="login-form">
-      <div class="form-group"><label>Your name</label>
+      <div class="form-group"><label>Login type</label>
+        <select id="login-type" onchange="onLoginTypeChange()">
+          <option value="team">Team member</option>
+          <option value="partner">Channel partner</option>
+        </select>
+      </div>
+      <div class="form-group" id="login-emp-wrap"><label>Your name</label>
         <select id="login-emp"><option value="">— Choose employee —</option><option>Karunakar</option><option>Summaiay Firdous</option><option>Sheeba Rani</option><option>Chandana</option><option>Suprathika</option></select>
       </div>
+      <div class="form-group hidden" id="login-partner-wrap"><label>Company name</label>
+        <select id="login-partner"><option value="">— Choose company —</option></select>
+      </div>
       <div class="form-group"><label>Password</label><input type="password" id="login-pass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"></div>
-      <button class="login-btn" onclick="doLogin()">Sign in →</button>
+      <button class="login-btn" onclick="doLogin()">Sign in</button>
+      <button type="button" class="login-btn secondary" style="margin-top:8px;" onclick="backToPublic()">Back to website</button>
     </div>
   </div>
 </div>
@@ -1146,15 +1519,15 @@ textarea{resize:vertical;min-height:70px}
   </div>
   <div class="topnav">
     <div class="logo">
-      <div class="logo-icon"><svg viewBox="0 0 19 19" fill="none"><rect x="2" y="2" width="6.5" height="6.5" rx="1.5" fill="white"/><rect x="10.5" y="2" width="6.5" height="6.5" rx="1.5" fill="white" opacity=".65"/><rect x="2" y="10.5" width="6.5" height="6.5" rx="1.5" fill="white" opacity=".65"/><rect x="10.5" y="10.5" width="6.5" height="6.5" rx="1.5" fill="white" opacity=".4"/></svg></div>
-      <div><div class="logo-name">Veda Communications</div><div class="logo-sub">CIBIL All-in-One Platform</div></div>
+      <img src="logo.png" alt="Veda" style="height:36px;width:auto;border-radius:4px;background:#fff;padding:2px;">
+      <div><div class="logo-name">Veda Cibil Services</div><div class="logo-sub">Official operations portal</div></div>
     </div>
     <div class="module-tabs">
-      <button class="mod-tab active" onclick="switchModule('tracker')">📋 Client Tracker</button>
-      <button class="mod-tab" onclick="switchModule('analyzer')">📊 CIBIL Analyzer</button>
-      <button class="mod-tab" onclick="switchModule('invoice')">🧾 Invoice</button>
-      <button class="mod-tab" onclick="switchModule('crm')">📱 CRM</button>
-      <button class="mod-tab" onclick="switchModule('attendance')">🗓 Attendance</button>
+      <button class="mod-tab active" onclick="switchModule('tracker')">Client Tracker</button>
+      <button class="mod-tab" onclick="switchModule('invoice')">Invoice</button>
+      <button class="mod-tab team-only" onclick="switchModule('partners')">Partners</button>
+      <button class="mod-tab" onclick="switchModule('crm')">CRM</button>
+      <button class="mod-tab" onclick="switchModule('attendance')">Attendance</button>
     </div>
     <div class="user-pill">
       <div class="avatar" id="header-avatar">KR</div>
@@ -1222,79 +1595,41 @@ textarea{resize:vertical;min-height:70px}
       </div>
 
       <!-- ── Channel filter pills ── -->
-      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
-        <button class="ch-tab-btn active" onclick="setChannelTab('')" id="cht-all">
-          <span style="font-size:15px;">🗂</span> All Clients
-        </button>
-        <button class="ch-tab-btn" onclick="setChannelTab('Reference')" id="cht-ref">
-          <span style="font-size:15px;">📖</span> Reference
-        </button>
-        <button class="ch-tab-btn" onclick="setChannelTab('Prakash')" id="cht-pr">
-          <span style="font-size:15px;">👤</span> Prakash
-        </button>
-        <button class="ch-tab-btn" onclick="setChannelTab('Mohan')" id="cht-mo">
-          <span style="font-size:15px;">👤</span> Mohan
-        </button>
-        <button class="ch-tab-btn" onclick="setChannelTab('Direct')" id="cht-di">
-          <span style="font-size:15px;">🔗</span> Direct
-        </button>
+      <div id="ch-tabs-wrap" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center;">
+        <button class="ch-tab-btn active" onclick="setChannelTab('')" id="cht-all">All</button>
+        <span id="ch-tabs-dynamic"></span>
+        <button class="ch-tab-btn" onclick="setChannelTab('Reference')" id="cht-ref">Reference</button>
+        <button class="ch-tab-btn" onclick="setChannelTab('Direct')" id="cht-di">Direct</button>
       </div>
-
-      <!-- ── Main client panel ── -->
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.07);">
-
-        <!-- Search + Filters bar -->
-        <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fff;">
-          <!-- Search -->
-          <div style="position:relative;flex:1;min-width:220px;">
-            <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--text3);">🔍</span>
-            <input type="text" id="search-input" onkeydown="if(event.key==='Enter')renderTable()" oninput="if(this._timer)clearTimeout(this._timer);this._timer=setTimeout(renderTable,400)" placeholder="Search by serial no, name, mobile or email…"
-              style="width:100%;padding:10px 12px 10px 36px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--font);color:var(--text);background:var(--bg);outline:none;transition:border .15s;"
-              onfocus="this.style.borderColor='var(--navy)';this.style.background='#fff';"
-              onblur="this.style.borderColor='var(--border)';this.style.background='var(--bg)';">
-          </div>
-
-          <!-- Status filter -->
-          <div style="display:flex;flex-direction:column;gap:3px;">
-            <label style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;">Status</label>
-            <select id="filter-status" onchange="renderTable()"
-              style="padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--font);color:var(--text);background:#fff;cursor:pointer;outline:none;min-width:140px;">
-              <option value="">All Statuses</option>
-              <option>Logged In</option><option>Pending</option><option>In Progress</option><option>Informed</option><option>Closed</option>
-            </select>
-          </div>
-
-          <!-- Employee filter -->
-          <div style="display:flex;flex-direction:column;gap:3px;">
-            <label style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;">Assigned To</label>
-            <select id="filter-emp" onchange="renderTable()"
-              style="padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--font);color:var(--text);background:#fff;cursor:pointer;outline:none;min-width:160px;">
-              <option value="">All Employees</option>
-              <option>Karunakar</option>
-              <option>Summaiay Firdous</option>
-              <option>Sheeba Rani</option>
-              <option>Chandana</option>
-              <option>Suprathika</option>
-            </select>
-          </div>
-
-          <!-- Export -->
-          <button onclick="exportCSV()"
-            style="padding:10px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--font);background:#fff;color:var(--text);cursor:pointer;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:all .15s;margin-top:18px;"
-            onmouseover="this.style.borderColor='var(--navy)';this.style.color='var(--navy)';"
-            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)';">
-            ⬇ Export CSV
-          </button>
-        </div>
-
-        <!-- Channel heading -->
+      <div class="toolbar" style="margin-bottom:12px;border:1px solid var(--border);border-radius:8px;">
+        <input class="search-box" id="search-input" placeholder="Search serial, name, mobile, email…" oninput="renderTable()">
+        <select class="filter-sel" id="filter-status" onchange="renderTable()">
+          <option value="">All statuses</option>
+          <option>Logged In</option>
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Informed</option>
+          <option>Closed</option>
+        </select>
+        <select class="filter-sel" id="filter-emp" onchange="renderTable()">
+          <option value="">All employees</option>
+          <option>Karunakar</option>
+          <option>Summaiay Firdous</option>
+          <option>Sheeba Rani</option>
+          <option>Chandana</option>
+          <option>Suprathika</option>
+        </select>
+        <button class="btn btn-sm" onclick="exportCSV()">Export CSV</button>
+      </div>
+      <!-- Channel heading -->
         <div id="ch-heading" style="display:none;padding:10px 20px;background:linear-gradient(90deg,var(--navy) 0%,var(--navy-light) 100%);color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;"></div>
 
         <!-- Table -->
+        <div class="panel" style="overflow:hidden;">
         <div style="overflow-x:auto;">
           <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
             <thead>
-              <tr style="background:#2d3748;">
+              <tr style="background:#123a5c;">
                 <th style="padding:13px 14px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;width:80px;">Serial No.</th>
                 <th style="padding:13px 14px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.08em;width:140px;">Customer</th>
                 <th style="padding:13px 14px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.08em;width:100px;">Mobile</th>
@@ -1321,6 +1656,7 @@ textarea{resize:vertical;min-height:70px}
           <span id="table-count" style="font-size:12px;color:var(--text2);font-weight:500;"></span>
           <span style="font-size:11px;color:var(--text3);">Veda Communications — CIBIL Client Tracker</span>
         </div>
+        </div>
       </div>
     </div>
 
@@ -1339,141 +1675,7 @@ textarea{resize:vertical;min-height:70px}
     </div>
   </div>
 
-  <!-- MODULE 2: CIBIL ANALYZER — FREE (Gemini AI) -->
-  <div id="module-analyzer" class="hidden main">
-    <div class="page-header">
-      <div><div class="page-title">📊 CIBIL Report Analyzer</div><div class="page-sub">Upload PDF or paste text → instant formatted analysis — AI-powered analysis — AI-powered CIBIL analysis using Claude</div></div>
-    </div>
-
-    <!-- API Key setup notice -->
-    <!-- Report counter bar -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
-      <div style="background:var(--surface);border:.5px solid var(--border);border-radius:var(--rl);padding:14px 18px;">
-        <div style="font-size:11px;color:var(--text2);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Total reports generated</div>
-        <div style="font-size:28px;font-weight:700;color:var(--green)" id="counter-total">—</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:2px;">All employees combined</div>
-      </div>
-      <div style="background:var(--surface);border:.5px solid var(--border);border-radius:var(--rl);padding:14px 18px;">
-        <div style="font-size:11px;color:var(--text2);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Today's reports</div>
-        <div style="font-size:28px;font-weight:700;color:var(--bt)" id="counter-today">—</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:2px;" id="counter-date">Loading…</div>
-      </div>
-      <div style="background:var(--surface);border:.5px solid var(--border);border-radius:var(--rl);padding:14px 18px;">
-        <div style="font-size:11px;color:var(--text2);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">This month</div>
-        <div style="font-size:28px;font-weight:700;color:#7C3AED" id="counter-month">—</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:2px;" id="counter-month-label">Loading…</div>
-      </div>
-    </div>
-
-    <!-- API Key setup -->
-    <div id="gemini-setup-banner" style="display:none;">
-      <div style="font-size:22px;flex-shrink:0;">🔑</div>
-      <div style="flex:1;">
-        <div style="font-size:13px;font-weight:600;color:#5B21B6;margin-bottom:6px;">One-time Setup — Enter your Anthropic API Key</div>
-        <div style="font-size:12px;color:#6D28D9;margin-bottom:10px;">
-          Go to <strong>console.anthropic.com</strong> → Click <strong>"Get API Key"</strong> → Click <strong>"Create Key"</strong> → Copy and paste below.<br>
-          ⚠️ <strong>Important:</strong> Your key is saved only in YOUR browser — it is never stored in the file or shared with anyone.
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <input type="password" id="gemini-key-input" placeholder="Paste your Anthropic API key (sk-ant-...)" style="flex:1;min-width:200px;padding:9px 12px;font-size:13px;border:.5px solid #C4B5FD;border-radius:7px;background:#fff;color:#1a1a18;font-family:inherit;">
-          <button onclick="toggleKeyVisibility()" style="padding:9px 12px;background:#334155;color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:13px;font-family:inherit;" id="key-eye-btn">👁 Show</button>
-          <button onclick="saveGeminiKey()" style="padding:9px 18px;background:#7C3AED;color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">Save key</button>
-          <a href="https://console.anthropic.com/settings/keys" target="_blank" style="padding:9px 14px;background:#1D9E75;color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;">Get key →</a>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;">
-          <div id="gemini-key-status" style="font-size:12px;color:#6D28D9;"></div>
-          <button onclick="clearKey()" style="font-size:11px;color:#ef4444;background:none;border:none;cursor:pointer;font-family:inherit;">🗑 Remove saved key</button>
-        </div>
-      </div>
-    </div>
-
-    <div style="background:#0f172a;border-radius:var(--rl);padding:24px;border:.5px solid var(--border);">
-      <div id="az-ready-badge" style="background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 16px;font-size:12px;color:#64748b;text-align:center;margin-bottom:16px;">✅ Ready — Upload a CIBIL PDF and click Analyze</div>
-
-      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px;">
-        <!-- Input card -->
-        <div style="background:#1e293b;border-radius:14px;padding:20px;border:1px solid #334155;">
-          <h2 style="font-size:13px;color:#94a3b8;margin-bottom:14px;font-weight:600;">📥 Input CIBIL Report</h2>
-          <div style="display:flex;gap:8px;margin-bottom:14px;">
-            <button class="az-tab-btn active" id="tabPdf" onclick="switchAzTab('pdf')">📄 Upload PDF</button>
-            <button class="az-tab-btn" id="tabText" onclick="switchAzTab('text')">📋 Paste Text</button>
-            <button class="az-tab-btn" id="tabCompany" onclick="switchAzTab('company')">🏢 Company Report</button>
-          </div>
-          <!-- Report Type Selector -->
-          <div id="reportTypeRow" style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
-            <span style="font-size:12px;color:#94a3b8;font-weight:500;">Report type:</span>
-            <button onclick="setReportType('individual')" id="rtIndividual" style="padding:5px 14px;font-size:12px;border-radius:6px;border:1px solid #0ea5e9;background:#0ea5e9;color:#fff;cursor:pointer;font-family:inherit;font-weight:600;">👤 Individual</button>
-            <button onclick="setReportType('company')" id="rtCompany" style="padding:5px 14px;font-size:12px;border-radius:6px;border:1px solid #334155;background:#0f172a;color:#64748b;cursor:pointer;font-family:inherit;">🏢 Company</button>
-          </div>
-          <div id="pdfTab">
-            <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
-              <input type="file" id="fileInput" accept=".pdf" onchange="handleFileSelect(event)">
-              <div class="dz-icon">📄</div>
-              <div class="dz-title">Click to upload or drag &amp; drop</div>
-              <div class="dz-sub">CIBIL PDF report • Any size supported</div>
-            </div>
-            <div class="file-preview" id="filePreview">
-              <div class="fp-icon">📄</div>
-              <div class="fp-info"><div class="fp-name" id="fpName">—</div><div class="fp-size" id="fpSize">—</div></div>
-              <button class="fp-remove" onclick="removeFile()">✕</button>
-            </div>
-            <p class="az-tip">💡 Any size PDF supported. Text extracted automatically for free.</p>
-          </div>
-          <div id="textTab" style="display:none;">
-            <textarea class="az-textarea" id="inputText" placeholder="Paste your CIBIL report text here...&#10;- Customer name, DOB, PAN&#10;- CIBIL score&#10;- All accounts with overdue, status etc."></textarea>
-            <p class="az-tip">💡 Paste raw text from the CIBIL report — any format works.</p>
-          </div>
-          <!-- Company report paste tab -->
-          <div id="companyTab" style="display:none;">
-            <textarea class="az-textarea" id="companyInputText" placeholder="Paste your Company CIBIL report text here...&#10;Include: Company name, CIBIL Rank, Credit facilities, Adverse information, Payment history etc." style="height:220px;"></textarea>
-            <p class="az-tip">💡 Copy all text from the Company Credit Report PDF and paste here.</p>
-          </div>
-          <button class="az-btn" id="analyzeBtn" onclick="analyzeReport()">🔍 Analyze Report</button>
-        </div>
-
-        <!-- Settings card -->
-        <div style="background:#1e293b;border-radius:14px;padding:20px;border:1px solid #334155;">
-          <h2 style="font-size:13px;color:#94a3b8;margin-bottom:14px;font-weight:600;">⚙️ Settings</h2>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="font-size:12px;color:#94a3b8;font-weight:500;">Score Color Thresholds</div>
-            <div style="background:#0f172a;border-radius:8px;padding:12px;font-size:12px;line-height:2.1;color:#e2e8f0;border:1px solid #334155;">🔴 <b>Poor</b> — Below 650<br>🟠 <b>Fair</b> — 650 to 699<br>🟡 <b>Average</b> — 700 to 749<br>🟢 <b>Good</b> — 750 and above</div>
-            <div style="font-size:12px;color:#94a3b8;font-weight:500;">Loan Eligibility Guide</div>
-            <div style="background:#0f172a;border-radius:8px;padding:12px;font-size:12px;line-height:2.1;color:#e2e8f0;border:1px solid #334155;">❌ Below 650 — Not eligible<br>⚠️ 650–699 — Limited options<br>✅ 700–749 — Most products<br>🌟 750+ — Best rates available</div>
-            <div style="font-size:12px;color:#94a3b8;font-weight:500;">Output Language</div>
-            <select class="az-select" id="langSelect">
-              <option value="english">English</option>
-              <option value="telugu">Telugu (తెలుగు)</option>
-              <option value="hindi">Hindi (हिंदी)</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Loading bar -->
-      <div class="loading-bar" id="loadingBar"><div class="spinner"></div><p id="loadingMsg">Analyzing with AI… please wait…</p></div>
-
-      <!-- Output -->
-      <div class="output-card" id="outputCard">
-        <div class="output-header">
-          <h2>✅ Analysis Result</h2>
-          <div class="az-action-btns">
-            <button class="az-action-btn" id="editBtn" onclick="toggleEdit()">✏️ Edit</button>
-            <button class="az-action-btn" onclick="copyResult(this)">📋 Copy</button>
-            <button class="az-action-btn" onclick="downloadResult()">⬇️ Save TXT</button>
-          </div>
-        </div>
-        <div class="result-box" id="resultBox"></div>
-        <textarea class="result-edit" id="resultEdit" style="display:none;" spellcheck="false"></textarea>
-      </div>
-
-
-    </div>
-  </div>
-</div>
-    </div>
-</div>
-    </div>
-  </div>
+  <!-- MODULE 2: INVOICE (analyzer removed) -->
 
   <!-- ══════════ MODULE 3: INVOICE GENERATOR ══════════ -->
   <div id="module-invoice" class="hidden" style="background:var(--bg);min-height:60vh;padding:10px 12px;overflow-x:hidden;">
@@ -1673,7 +1875,44 @@ textarea{resize:vertical;min-height:70px}
   </div>
 
 <!-- ═══════════ MODULE 4: CRM ═══════════ -->
-<div id="module-crm" class="hidden" style="background:#0C0F14;">
+
+  <!-- MODULE: CHANNEL PARTNERS (team only) -->
+  <div id="module-partners" class="hidden main">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Channel Partners</div>
+        <div class="page-sub">Add or remove partner companies. Partners only see their own clients.</div>
+      </div>
+      <button class="btn btn-primary" onclick="openPartnerModal()">+ Add partner</button>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">Active partners</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Company</th><th>Password</th><th>Clients</th><th>Actions</th></tr></thead>
+          <tbody id="partners-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay hidden" id="partner-modal" style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:flex;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;padding:24px;width:400px;max-width:92vw;">
+      <div style="font-size:16px;font-weight:700;margin-bottom:14px;">Add channel partner</div>
+      <div class="form-group" style="margin-bottom:12px;"><label>Company name</label>
+        <input id="pt-company" placeholder="e.g. Prakash Associates" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;">
+      </div>
+      <div class="form-group" style="margin-bottom:16px;"><label>Login password</label>
+        <input id="pt-pass" type="text" placeholder="Set partner password" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;">
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;">
+        <button class="btn" onclick="closePartnerModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="savePartner()">Save partner</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="module-crm" class="hidden" style="background:#0C0F14;">
 <div class="crm-inner">
 <!-- SIDEBAR -->
 <div class="sidebar">
@@ -2174,10 +2413,10 @@ textarea{resize:vertical;min-height:70px}
 <!-- TOP BAR -->
 <div class="att-topbar">
   <div class="att-logo">
-    <div class="att-logo-icon">VC</div>
+    <img src="logo.png" alt="" style="height:34px;width:auto;background:#fff;border-radius:3px;padding:2px;">
     <div>
       <div class="att-logo-text">Veda Communications</div>
-      <div class="att-logo-sub">Employee Attendance &amp; Salary</div>
+      <div class="att-logo-sub">HR · Monthly Attendance Register</div>
     </div>
   </div>
   <div class="att-topbar-right">
@@ -2186,40 +2425,53 @@ textarea{resize:vertical;min-height:70px}
       <span class="month-label" id="month-label"></span>
       <button onclick="attChangeMonth(1)">&#8594;</button>
     </div>
-    <button class="att-btn-outline" onclick="attMarkAllPresent()">✅ All Present Today</button>
-    <button class="att-btn-accent" onclick="attExportCSV()">⬇ Export CSV</button>
+    <button class="att-btn-outline" onclick="attMarkAllPresent()">Mark all present (today)</button>
+    <button class="att-btn-accent" onclick="attExportCSV()">Export CSV</button>
   </div>
 </div>
 
 <!-- MAIN -->
 <div class="att-main">
 
+  <div class="att-register-banner">
+    <div>
+      <h2>Official Monthly Attendance Register</h2>
+      <p>Veda Communications / Veda Cibil Services · F.No. 18-24, Prashanth Nagar Main Road, Uppal Khalsa, Telangana 500039<br>
+      Codes: <strong>P</strong> Present · <strong>A</strong> Absent · <strong>H</strong> Half day · <strong>L</strong> Leave · <strong>CL</strong> Casual leave (paid) · Sundays / 2nd &amp; 4th Saturdays = weekly off</p>
+    </div>
+    <div class="att-register-meta">
+      Document: ATT-REG<br>
+      Use: Internal HR only<br>
+      Founder: Kotturi Karunakar
+    </div>
+  </div>
+
   <!-- SUMMARY CARDS -->
   <div class="summary-row">
     <div class="sum-card total">
-      <div class="sum-label">📅 Working Days</div>
+      <div class="sum-label">Working days</div>
       <div class="sum-val" id="sum-working">0</div>
-      <div class="sum-sub">This month (excl. holidays)</div>
+      <div class="sum-sub">This month (excl. weekly offs)</div>
     </div>
     <div class="sum-card present">
-      <div class="sum-label">✅ Total Present</div>
+      <div class="sum-label">Present (P)</div>
       <div class="sum-val" id="sum-present">0</div>
-      <div class="sum-sub">Across all employees</div>
+      <div class="sum-sub">All employees</div>
     </div>
     <div class="sum-card absent">
-      <div class="sum-label">❌ Total Absent</div>
+      <div class="sum-label">Absent (A)</div>
       <div class="sum-val" id="sum-absent">0</div>
-      <div class="sum-sub">Across all employees</div>
+      <div class="sum-sub">All employees</div>
     </div>
     <div class="sum-card half">
-      <div class="sum-label">🌓 Half Days</div>
+      <div class="sum-label">Half day (H)</div>
       <div class="sum-val" id="sum-half">0</div>
-      <div class="sum-sub">Across all employees</div>
+      <div class="sum-sub">All employees</div>
     </div>
     <div class="sum-card salary">
-      <div class="sum-label">💰 Total Payable</div>
+      <div class="sum-label">Total payable</div>
       <div class="sum-val" id="sum-salary">₹0</div>
-      <div class="sum-sub">All employees this month</div>
+      <div class="sum-sub">Salary estimate this month</div>
     </div>
   </div>
 
@@ -2227,16 +2479,16 @@ textarea{resize:vertical;min-height:70px}
   <div class="att-section">
     <div class="att-header">
       <div>
-        <div class="att-title">📅 Daily Attendance Register</div>
-        <div class="att-subtitle">Click a cell to toggle: Present → Absent → Half Day → Leave → Casual Leave → Empty &nbsp;|&nbsp; SUN / 2nd SAT / 4th SAT = Holidays (marked red, not clickable)</div>
+        <div class="att-title">Day-wise attendance sheet</div>
+        <div class="att-subtitle">Click cell to cycle: P → A → H → L → CL → blank. Weekly offs are locked.</div>
       </div>
       <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#10B981"></div>P = Present</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#EF4444"></div>A = Absent</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#F5C518"></div>H = Half Day</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#3B82F6"></div>L = Leave</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#A78BFA"></div>CL = Casual Leave</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#EF4444;opacity:0.7"></div><span style="color:#fca5a5;font-weight:700">SUN/2SAT/4SAT</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#10B981"></div>P Present</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#EF4444"></div>A Absent</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e8b923"></div>H Half</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1a8fc4"></div>L Leave</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0b4f78"></div>CL Casual</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#EF4444;opacity:0.7"></div>Weekly off</div>
       </div>
     </div>
     <div class="att-table-wrap">
@@ -2251,8 +2503,8 @@ textarea{resize:vertical;min-height:70px}
   <div class="salary-section">
     <div class="att-header">
       <div>
-        <div class="att-title">💰 Salary Calculator</div>
-        <div class="att-subtitle">Auto-calculated based on attendance. Half day = 0.5 day salary. Casual Leave = paid leave.</div>
+        <div class="att-title">Salary computation sheet</div>
+        <div class="att-subtitle">Auto-calculated from register. Half day = 0.5 day pay. Casual leave (CL) = paid. Export/print for payroll records.</div>
       </div>
     </div>
     <div class="salary-grid" id="salary-grid"></div>
@@ -2264,9 +2516,9 @@ textarea{resize:vertical;min-height:70px}
       💾 Data auto-saved in your browser &nbsp;|&nbsp; <strong id="last-saved">Not saved yet</strong>
     </div>
     <div class="export-btns">
-      <button class="att-btn-outline" onclick="attClearMonth()">🗑 Clear Month</button>
-      <button class="att-btn-outline" onclick="attPrintPage()">🖨 Print</button>
-      <button class="att-btn-accent" onclick="attExportCSV()">⬇ Export CSV</button>
+      <button class="att-btn-outline" onclick="attClearMonth()" style="color:#0a2744;border-color:#c9d6e2;">Clear month</button>
+      <button class="att-btn-outline" onclick="attPrintPage()" style="color:#0a2744;border-color:#c9d6e2;">Print register</button>
+      <button class="att-btn-accent" onclick="attExportCSV()">Export CSV</button>
     </div>
   </div>
 
@@ -2648,6 +2900,238 @@ window.crmFirebase = {
     });
   }
 };
+
+
+/* veda partner+public layer */
+/* ── Public site + Partner access layer ── */
+const PUBLIC_WA = '9441471959'; // business WhatsApp for form leads
+let userRole = 'team'; // 'team' | 'partner'
+let partnerCompany = null;
+let channelPartners = {
+  'Prakash': { company: 'Prakash', password: 'partner123', active: true },
+  'Mohan': { company: 'Mohan', password: 'partner123', active: true }
+};
+
+function showPublic(page) {
+  document.getElementById('public-site').classList.remove('hidden');
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('app-shell').classList.add('hidden');
+  ['home','about','request','knowledge','payments','contact'].forEach(function(p){
+    var el = document.getElementById('pub-'+p);
+    if(el) el.classList.toggle('hidden', p !== page);
+  });
+  window.scrollTo(0,0);
+}
+function showLogin() {
+  document.getElementById('public-site').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+  document.getElementById('app-shell').classList.add('hidden');
+  fillPartnerLoginSelect();
+}
+function backToPublic() {
+  showPublic('home');
+}
+function onLoginTypeChange() {
+  var t = document.getElementById('login-type').value;
+  document.getElementById('login-emp-wrap').classList.toggle('hidden', t !== 'team');
+  document.getElementById('login-partner-wrap').classList.toggle('hidden', t !== 'partner');
+}
+function fillPartnerLoginSelect() {
+  var sel = document.getElementById('login-partner');
+  if(!sel) return;
+  var keys = Object.keys(channelPartners).filter(function(k){ return channelPartners[k] && channelPartners[k].active !== false; }).sort();
+  sel.innerHTML = '<option value="">— Choose company —</option>' + keys.map(function(k){
+    var name = channelPartners[k].company || k;
+    return '<option value="'+k.replace(/"/g,'&quot;')+'">'+name.replace(/</g,'')+'</option>';
+  }).join('');
+}
+function partnerNames() {
+  return Object.keys(channelPartners).filter(function(k){ return channelPartners[k] && channelPartners[k].active !== false; });
+}
+function renderChannelTabs() {
+  var host = document.getElementById('ch-tabs-dynamic');
+  if(!host) return;
+  host.innerHTML = partnerNames().map(function(name){
+    return '<button class="ch-tab-btn" onclick="setChannelTab(\''+name.replace(/'/g,"\\'")+'\')" data-ch="'+name+'">'+name+'</button>';
+  }).join(' ');
+}
+function applyRoleUI() {
+  document.body.classList.toggle('partner-mode', userRole === 'partner');
+  var tabs = document.querySelector('.module-tabs');
+  if(tabs) {
+    document.querySelectorAll('.mod-tab').forEach(function(b){
+      var isTracker = (b.getAttribute('onclick')||'').indexOf("tracker") >= 0;
+      if(userRole === 'partner') {
+        b.style.display = isTracker ? '' : 'none';
+        b.classList.toggle('active', isTracker);
+      } else {
+        b.style.display = '';
+      }
+    });
+  }
+  if(userRole === 'partner') {
+    activeChannel = partnerCompany;
+    switchModule('tracker');
+    showTab('clients');
+  }
+  renderChannelTabs();
+  updatePartnerSelectOptions();
+  renderPartnersTable();
+}
+
+function visibleClientsArr() {
+  var arr = cArr();
+  if(userRole === 'partner' && partnerCompany) {
+    arr = arr.filter(function(c){ return c.channel === partnerCompany; });
+  }
+  return arr;
+}
+
+function updatePartnerSelectOptions() {
+  var sel = document.getElementById('f-channel');
+  if(!sel) return;
+  var base = ['Reference','Direct'].concat(partnerNames());
+  var cur = sel.value;
+  sel.innerHTML = base.map(function(ch){ return '<option value="'+ch+'">'+ch+'</option>'; }).join('');
+  if(base.indexOf(cur) >= 0) sel.value = cur;
+  else if(userRole === 'partner') sel.value = partnerCompany;
+}
+
+window.openPartnerModal = function(){
+  document.getElementById('partner-modal').classList.remove('hidden');
+  document.getElementById('partner-modal').style.display = 'flex';
+  document.getElementById('pt-company').value = '';
+  document.getElementById('pt-pass').value = '';
+};
+window.closePartnerModal = function(){
+  var m = document.getElementById('partner-modal');
+  m.classList.add('hidden');
+  m.style.display = 'none';
+};
+window.savePartner = function(){
+  var company = (document.getElementById('pt-company').value || '').trim();
+  var pass = (document.getElementById('pt-pass').value || '').trim();
+  if(!company){ showToast('Enter company name.','error'); return; }
+  if(!pass){ showToast('Set a password.','error'); return; }
+  if(typeof set !== 'function' || typeof ref !== 'function' || typeof db === 'undefined'){
+    channelPartners[company] = { company: company, password: pass, active: true };
+    afterPartnersChanged();
+    closePartnerModal();
+    showToast('Partner saved locally.');
+    return;
+  }
+  set(ref(db, 'channelPartners/' + company.replace(/[.#$\\[\\]]/g,'_')), { company: company, password: pass, active: true, ts: Date.now() })
+    .then(function(){ closePartnerModal(); showToast('Partner added.'); })
+    .catch(function(e){ showToast('Save failed: '+e.message,'error'); });
+};
+window.removePartner = function(key){
+  if(!confirm('Remove partner "'+key+'"? Their clients stay in tracker but login is disabled.')) return;
+  if(typeof remove === 'function' && typeof db !== 'undefined'){
+    remove(ref(db, 'channelPartners/' + key.replace(/[.#$\\[\\]]/g,'_')))
+      .then(function(){ showToast('Partner removed.'); })
+      .catch(function(){
+        // fallback soft-delete
+        update(ref(db, 'channelPartners/' + key.replace(/[.#$\\[\\]]/g,'_')), { active: false });
+      });
+  } else {
+    delete channelPartners[key];
+    afterPartnersChanged();
+    showToast('Partner removed.');
+  }
+};
+function afterPartnersChanged(){
+  fillPartnerLoginSelect();
+  renderChannelTabs();
+  updatePartnerSelectOptions();
+  renderPartnersTable();
+  if(typeof renderTable === 'function') renderTable();
+  if(typeof renderReports === 'function') renderReports();
+}
+function renderPartnersTable(){
+  var tb = document.getElementById('partners-table-body');
+  if(!tb) return;
+  var keys = Object.keys(channelPartners);
+  if(!keys.length){ tb.innerHTML = '<tr><td colspan="4" style="padding:16px;color:#6b7280;">No partners yet. Click Add partner.</td></tr>'; return; }
+  tb.innerHTML = keys.map(function(k){
+    var p = channelPartners[k] || {};
+    if(p.active === false) return '';
+    var name = p.company || k;
+    var cnt = cArr().filter(function(c){ return c.channel === name || c.channel === k; }).length;
+    return '<tr><td style="padding:10px 12px;font-weight:600;">'+name+'</td><td style="padding:10px 12px;font-family:monospace;">'+(p.password||'—')+'</td><td style="padding:10px 12px;">'+cnt+'</td><td style="padding:10px 12px;"><button class="btn btn-sm btn-danger" onclick="removePartner(\''+k.replace(/'/g,"\\'")+'\')">Remove</button></td></tr>';
+  }).join('');
+}
+
+window.submitCibilRequest = function(e){
+  e.preventDefault();
+  var fd = new FormData(e.target);
+  var msg = 'Required details for cibil report and analysis\\n\\n'
+    + 'Full Name: ' + fd.get('fullName') + '\\n'
+    + 'Mail ID: ' + fd.get('email') + '\\n'
+    + 'Mobile number: ' + fd.get('mobile') + '\\n'
+    + 'Pan number: ' + String(fd.get('pan')||'').toUpperCase() + '\\n'
+    + 'Date of birth: ' + fd.get('dob') + '\\n'
+    + 'Pincode Address: ' + fd.get('address') + '\\n\\n'
+    + 'please send this details for cibil report and analysis report\\n\\n'
+    + 'Best Regards\\nVeda cibil Consultancy';
+  var url = 'https://wa.me/91' + PUBLIC_WA + '?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+};
+
+function toggleChatbot(){
+  document.getElementById('chatbot-panel').classList.toggle('hidden');
+}
+function chatQuick(q){ chatReply(q); }
+function chatSend(e){
+  e.preventDefault();
+  var inp = document.getElementById('chatbot-text');
+  var q = (inp.value||'').trim();
+  if(!q) return;
+  inp.value = '';
+  chatReply(q);
+}
+function chatReply(q){
+  var box = document.getElementById('chatbot-msgs');
+  box.innerHTML += '<div class="user-msg">'+q.replace(/</g,'&lt;')+'</div>';
+  var lower = q.toLowerCase();
+  var ans = 'Thanks! For a personal review, use Request Report or WhatsApp us on ' + PUBLIC_WA + '.';
+  if(lower.indexOf('score') >= 0 || lower.indexOf('cibil') >= 0)
+    ans = 'A CIBIL score is typically 300–900 and reflects your credit history. Higher is better for loans. Use Knowledge Centre for more, or Request Report for a full analysis.';
+  if(lower.indexOf('request') >= 0 || lower.indexOf('analysis') >= 0 || lower.indexOf('report') >= 0)
+    ans = 'Go to Request Report, fill Full Name, Email, Mobile, PAN, DOB and Address — we will open WhatsApp with your details for our team.';
+  if(lower.indexOf('pay') >= 0 || lower.indexOf('upi') >= 0 || lower.indexOf('bank') >= 0)
+    ans = 'Pay via UPI bi2vedacomm730@fbl or Federal Bank A/C 15830200006362 (IFSC FDRL0001583). Open Payments to scan the QR.';
+  if(lower.indexOf('address') >= 0 || lower.indexOf('office') >= 0 || lower.indexOf('complaint') >= 0)
+    ans = 'Office: F.No. 18-24, Prashanth Nagar Main Road, Near Pista House, Uppal Khalsa, Telangana 500039. Call 9441471959 / 9849283860 or email info@vedacibilservices.com.';
+  box.innerHTML += '<div class="bot-msg">'+ans+'</div>';
+  box.scrollTop = box.scrollHeight;
+  if(lower.indexOf('request') >= 0 || lower.indexOf('analysis') >= 0) setTimeout(function(){ showPublic('request'); }, 600);
+  if(lower.indexOf('pay') >= 0) setTimeout(function(){ showPublic('payments'); }, 600);
+  if(lower.indexOf('address') >= 0 || lower.indexOf('office') >= 0) setTimeout(function(){ showPublic('contact'); }, 600);
+}
+
+// Patch hooks after main script loads
+
+window.showPublic = showPublic;
+window.showLogin = showLogin;
+window.backToPublic = backToPublic;
+window.onLoginTypeChange = onLoginTypeChange;
+window.submitCibilRequest = submitCibilRequest;
+window.toggleChatbot = toggleChatbot;
+window.chatQuick = chatQuick;
+window.chatSend = chatSend;
+window.visibleClientsArr = visibleClientsArr;
+window.applyRoleUI = applyRoleUI;
+window.afterPartnersChanged = afterPartnersChanged;
+window.fillPartnerLoginSelect = fillPartnerLoginSelect;
+window.renderChannelTabs = renderChannelTabs;
+window.renderPartnersTable = renderPartnersTable;
+window.partnerNames = partnerNames;
+
+document.addEventListener('DOMContentLoaded', function(){
+  fillPartnerLoginSelect();
+  renderChannelTabs();
+});
+
 const PASSWORDS={'Karunakar':'veda@admin','Summaiay Firdous':'veda1234','Sheeba Rani':'veda1234','Chandana':'veda1234','Suprathika':'veda1234'};
 const OFFICE='9492251868';
 const EMPLOYEES=['Karunakar','Summaiay Firdous','Sheeba Rani','Chandana','Suprathika'];
@@ -2668,15 +3152,47 @@ function setSS(s,l){document.getElementById('sync-dot').className='sync-dot '+s;
 function showToast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast toast-'+(type||'success')+' show';setTimeout(function(){t.classList.remove('show');},3200);}
 
 window.doLogin=function(){
-  var emp=document.getElementById('login-emp').value,pass=document.getElementById('login-pass').value;
-  if(!emp){showToast('Please select your name.','error');return;}
-  if(PASSWORDS[emp]&&pass!==PASSWORDS[emp]){showToast('Wrong password.','error');return;}
-  currentUser=emp;sessionStorage.setItem('veda_user',emp);
+  var type=(document.getElementById('login-type')||{}).value||'team';
+  var pass=document.getElementById('login-pass').value;
+  if(type==='partner'){
+    var company=document.getElementById('login-partner').value;
+    if(!company){showToast('Please select your company.','error');return;}
+    var p=channelPartners[company];
+    if(!p||p.active===false){showToast('Partner not found.','error');return;}
+    if(pass!==(p.password||'')){showToast('Wrong password.','error');return;}
+    userRole='partner';
+    partnerCompany=p.company||company;
+    currentUser=partnerCompany;
+    sessionStorage.setItem('veda_user',currentUser);
+    sessionStorage.setItem('veda_role','partner');
+    sessionStorage.setItem('veda_partner',partnerCompany);
+  } else {
+    var emp=document.getElementById('login-emp').value;
+    if(!emp){showToast('Please select your name.','error');return;}
+    if(PASSWORDS[emp]&&pass!==PASSWORDS[emp]){showToast('Wrong password.','error');return;}
+    userRole='team';
+    partnerCompany=null;
+    currentUser=emp;
+    sessionStorage.setItem('veda_user',emp);
+    sessionStorage.setItem('veda_role','team');
+    sessionStorage.removeItem('veda_partner');
+  }
+  document.getElementById('public-site').classList.add('hidden');
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app-shell').classList.remove('hidden');
+  applyRoleUI();
   initApp();
 };
-window.doLogout=function(){sessionStorage.removeItem('veda_user');currentUser=null;document.getElementById('app-shell').classList.add('hidden');document.getElementById('login-screen').classList.remove('hidden');document.getElementById('login-pass').value='';};
+window.doLogout=function(){
+  sessionStorage.removeItem('veda_user');
+  sessionStorage.removeItem('veda_role');
+  sessionStorage.removeItem('veda_partner');
+  currentUser=null;userRole='team';partnerCompany=null;
+  document.body.classList.remove('partner-mode');
+  document.getElementById('app-shell').classList.add('hidden');
+  document.getElementById('login-pass').value='';
+  showPublic('home');
+};
 
 function initApp(){
   var h=new Date().getHours();
@@ -2688,17 +3204,31 @@ function initApp(){
   document.getElementById('sync-user').textContent='Logged in: '+currentUser;
   setSS('syncing','Connecting…');
   if(window._checkKeysOnLogin) window._checkKeysOnLogin();
-  onValue(ref(db,'clients'),function(s){clients=s.val()||{};setSS('online','Live — all changes synced');renderDashboard();renderTable();renderReports();},function(e){setSS('error','Connection error');showToast('Firebase error: '+e.message,'error');});
+  onValue(ref(db,'channelPartners'),function(s){
+    var v=s.val();
+    if(v && typeof v==='object'){
+      channelPartners=v;
+    } else {
+      // Seed default partners into Firebase once (empty DB)
+      ['Prakash','Mohan'].forEach(function(n){
+        if(!channelPartners[n]) channelPartners[n]={company:n,password:'partner123',active:true};
+        set(ref(db,'channelPartners/'+n),{company:n,password:'partner123',active:true,ts:Date.now()});
+      });
+    }
+    afterPartnersChanged();
+  });
+  onValue(ref(db,'clients'),function(s){clients=s.val()||{};setSS('online','Live — all changes synced');renderDashboard();renderTable();renderReports();renderPartnersTable();},function(e){setSS('error','Connection error');showToast('Firebase error: '+e.message,'error');});
   onValue(ref(db,'activityLog'),function(s){var r=s.val()||{};activityLog=Object.values(r).sort(function(a,b){return (b.ts||0)-(a.ts||0);});renderActivityLog();});
+  applyRoleUI();
 }
 
 window.switchModule=function(m){
-  ['module-tracker','module-analyzer','module-invoice','module-crm','module-attendance'].forEach(function(id){
+  ['module-tracker','module-invoice','module-partners','module-crm','module-attendance'].forEach(function(id){
     var el=document.getElementById(id);
     if(el) el.classList.toggle('hidden', id!=='module-'+m);
   });
   document.querySelectorAll('.mod-tab').forEach(function(b,i){
-    b.classList.toggle('active',['tracker','analyzer','invoice','crm','attendance'][i]===m);
+    b.classList.toggle('active',['tracker','invoice','partners','crm','attendance'][i]===m);
   });
   if(m==='crm') crmBuildContactList();
   if(m==='invoice'){
@@ -2727,7 +3257,7 @@ window.showTab=function(tab){
 window.setChannelTab=function(ch){
   activeChannel=ch;
   document.querySelectorAll('.ch-tab-btn').forEach(function(b){b.classList.remove('active');});
-  var idx=['','Reference','Prakash','Mohan','Direct'].indexOf(ch);
+  var idx=-1; document.querySelectorAll('.ch-tab-btn').forEach(function(b,i){ if((b.getAttribute('onclick')||'').indexOf("setChannelTab('"+ch+"')")>=0 || (ch===''&&b.id==='cht-all')) idx=i; });
   var btns=document.querySelectorAll('.ch-tab-btn');
   if(idx>=0&&btns[idx])btns[idx].classList.add('active');
   var hd=document.getElementById('ch-heading');
@@ -2737,7 +3267,7 @@ window.setChannelTab=function(ch){
 };
 
 function renderDashboard(){
-  var arr=cArr(),total=arr.length,li=0,p=0,ip=0,inf=0,cl=0;
+  var arr=(typeof visibleClientsArr==='function'?visibleClientsArr():cArr()),total=arr.length,li=0,p=0,ip=0,inf=0,cl=0;
   arr.forEach(function(c){
     if(c.status==='Logged In') li++;
     else if(c.status==='Pending') p++;
@@ -2846,25 +3376,31 @@ function statusBadge(s){
 
 function setHover(el,on){el.style.background=on?'#eef2ff':el.dataset.bg;}
 function renderTable(){
-  var q=(document.getElementById('search-input').value||'').toLowerCase();
-  var fs=document.getElementById('filter-status').value;
-  var fe=document.getElementById('filter-emp').value;
+  var searchEl=document.getElementById('search-input');
+  var statusEl=document.getElementById('filter-status');
+  var empEl=document.getElementById('filter-emp');
+  var q=((searchEl&&searchEl.value)||'').toLowerCase();
+  var fs=(statusEl&&statusEl.value)||'';
+  var fe=(empEl&&empEl.value)||'';
   var arr=cArr().filter(function(c){
-    var m=!q||(c.bookno||'').toLowerCase().indexOf(q)>=0||c.name.toLowerCase().indexOf(q)>=0||(c.mobile||'').indexOf(q)>=0||(c.email||'').toLowerCase().indexOf(q)>=0||(c.issues||'').toLowerCase().indexOf(q)>=0;
+    var m=!q||(c.bookno||'').toLowerCase().indexOf(q)>=0||(c.name||'').toLowerCase().indexOf(q)>=0||(c.mobile||'').indexOf(q)>=0||(c.email||'').toLowerCase().indexOf(q)>=0||(c.issues||'').toLowerCase().indexOf(q)>=0;
+    if(userRole==='partner'&&partnerCompany&&c.channel!==partnerCompany)return false;
     return m&&(!fs||c.status===fs)&&(!fe||c.employee===fe)&&(!activeChannel||c.channel===activeChannel);
   });
   var tbody=document.getElementById('client-tbody');
   var empty=document.getElementById('empty-state');
   var footer=document.getElementById('table-footer');
   var countEl=document.getElementById('table-count');
+  if(!tbody)return;
 
   if(arr.length===0){
     tbody.innerHTML='';
-    empty.classList.remove('hidden');
+    if(empty)empty.classList.remove('hidden');
     if(footer)footer.style.display='none';
+    if(countEl)countEl.textContent='Showing 0 clients';
     return;
   }
-  empty.classList.add('hidden');
+  if(empty)empty.classList.add('hidden');
   if(footer)footer.style.display='flex';
   if(countEl)countEl.textContent='Showing '+arr.length+' client'+(arr.length!==1?'s':'')+(activeChannel?' · '+activeChannel:'');
 
@@ -2930,10 +3466,13 @@ function renderTable(){
     if(hd){hd.style.display='block';hd.textContent='📂 '+activeChannel+' — '+arr.length+' client'+(arr.length!==1?'s':'');}
   }
 }
+window.renderTable=renderTable;
+window._vedaClientRenderTable=renderTable;
 
 function renderReports(){
   var arr=cArr();
-  document.getElementById('report-channel').innerHTML=['Reference','Prakash','Mohan','Direct'].map(function(ch){var cnt=arr.filter(function(c){return c.channel===ch;}).length;return '<div class="report-row"><span>'+ch+'</span><strong>'+cnt+'</strong></div>';}).join('');
+  if(userRole==='partner'){var rc=document.getElementById('report-channel');if(rc)rc.innerHTML='';return;}
+  document.getElementById('report-channel').innerHTML=['Reference','Direct'].concat(partnerNames()).map(function(ch){var cnt=arr.filter(function(c){return c.channel===ch;}).length;return '<div class="report-row"><span>'+ch+'</span><strong>'+cnt+'</strong></div>';}).join('');
   document.getElementById('report-emp').innerHTML=EMPLOYEES.map(function(e){var cnt=arr.filter(function(c){return c.employee===e;}).length;return '<div class="report-row"><span>'+e+'</span><strong>'+cnt+'</strong></div>';}).join('');
   var pending=arr.filter(function(c){return c.status==='Logged In'||c.status==='Pending'||c.status==='In Progress';});
   document.getElementById('report-pending').innerHTML=pending.length===0?'<div style="color:var(--text3);text-align:center;padding:16px 0">No pending cases!</div>':pending.map(function(c){return '<div style="padding:8px 0;border-bottom:.5px solid var(--border)"><div style="font-weight:500">'+(c.bookno?'<span class="serial-badge" style="font-size:10px;margin-right:6px">'+c.bookno+'</span>':'')+c.name+'</div><div style="font-size:11px;color:var(--text2);margin-top:3px">'+(c.date||'—')+' · '+statusBadge(c.status)+' · '+(c.employee||'—')+'</div></div>';}).join('');
@@ -3103,613 +3642,19 @@ document.getElementById('wa-modal').addEventListener('click',function(e){if(e.ta
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeViewModal();closeWaModal();}});
 
 var saved=sessionStorage.getItem('veda_user');
-if(saved){currentUser=saved;document.getElementById('login-screen').classList.add('hidden');document.getElementById('app-shell').classList.remove('hidden');initApp();}
-</script>
-<!-- CIBIL ANALYZER — Claude AI powered -->
-
-
-<!-- Invoice Generator JS -->
-
-<!-- CIBIL ANALYZER — Claude AI powered -->
-<script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-var GEMINI_PROMPT = `You are a credit report analyst for Veda Communications. You analyze both Individual CIBIL reports and Company CIBIL Credit Reports.
-
-When the user says "Analyze this Company CIBIL Credit Report", use the COMPANY REPORT FORMAT below.
-Otherwise use the INDIVIDUAL REPORT FORMAT.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-COMPANY REPORT FORMAT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Output EXACTLY this format for company reports, no extra text:
-
-📊 TransUnion CIBIL Company Credit Report Analysis
-━━━━━━━━━━━━━━━━━━━━━
-🏢 Company Details
-* Company Name: [NAME]
-* Type: [Proprietorship / Partnership / Pvt Ltd etc.]
-* PAN: [PAN NUMBER]
-* Report Date: [DD Mon YYYY]
-* Report Order Number: [NUMBER]
-━━━━━━━━━━━━━━━━━━━━━
-🏆 CIBIL Rank: [RANK] / 10
-* [RANK MEANING: 1 = Best, 10 = Worst]
-* [If rank 8-10: ⚠️ High Risk — Defaulted or poor repayment history]
-* [If rank 5-7: 🟡 Moderate Risk]
-* [If rank 1-4: 🟢 Low Risk — Good repayment history]
-* Rank Reason: [Any reason code mentioned e.g. KB22200 - Defaulted in last 12 months]
-━━━━━━━━━━━━━━━━━━━━━
-💳 Credit Exposure
-* Total Exposure: ₹[AMOUNT]
-* Active Facilities: [NUMBER]
-* Open Accounts: [NUMBER]
-* Closed Accounts: [NUMBER]
-* Working Capital Utilisation: [PERCENTAGE]%
-━━━━━━━━━━━━━━━━━━━━━
-⚠️ Negative Accounts & Adverse Information
-* Wilful Default: [Yes — details / None]
-* Suit Filed: [Yes — details / None]
-* Written Off: [Yes — details / None]
-* Settled: [Yes — details / None]
-* Overdue: [Yes — details / None]
-* Dishonoured Cheque: [Yes — details / None]
-[If any adverse exists, list ONLY those negative accounts:]
-[N]. [BANK NAME] — [LOAN TYPE] — [STATUS] [EMOJI]
-   • A/C No: [FULL ACCOUNT NUMBER]
-   • Sanctioned Amount: ₹[AMOUNT]
-   • Outstanding Balance: ₹[AMOUNT]
-   • Overdue Amount: ₹[AMOUNT] (only if > 0)
-   • Written-off Amount: ₹[AMOUNT] (only if > 0)
-   • Settlement Amount: ₹[AMOUNT] (only if > 0)
-   • Asset Classification: [STATUS]
-   • Opened: [DATE]
-   • Last Reported: [DATE]
-[If no adverse at all: ✅ No negative accounts found]
-━━━━━━━━━━━━━━━━━━━━━
-📝 Payment Summary
-* Payments on time: [X] / [TOTAL] months
-* Months with delay < 3 months: [NUMBER]
-* Months with delay 3-6 months: [NUMBER]
-* Months with delay > 6 months: [NUMBER]
-━━━━━━━━━━━━━━━━━━━━━
-💡 Remarks
-* [Overall assessment based on rank, exposure and payment history]
-* [Loan eligibility recommendation]
-━━━━━━━━━━━━━━━━━━━━━
-
-COMPANY FORMAT RULES:
-- Always show all sections even if some show "None" or "0"
-- For Remarks: if rank is 8-10 say "High risk — lenders may be cautious". If rank 1-4 say "Good credit profile — eligible for most loan products"
-- For working capital utilisation above 90% mention "High utilisation — may affect new loan eligibility"
-- Show FULL account numbers always
-- Jana Small Finance Bank with high DPD numbers but no adverse flag = mention in payment summary only, NOT in negative accounts section
-- Do NOT list regular open or closed accounts in the negative section — ONLY list accounts that have adverse information (wilful default, suit filed, written off, settled, overdue, dishonoured cheque)
-- If Adverse Information section of the report shows all dashes (-) for all fields, then show ✅ No negative accounts found
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-INDIVIDUAL REPORT FORMAT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-STEP 1 — Find these details:
-- Identify bureau: TransUnion CIBIL, Experian, CRIF High Mark, or Equifax
-- Control Number, customer name, DOB, PAN, report date
-- CIBIL score (300-900), any previous score with month/year
-- ALL negative accounts — flag if ANY of these are true:
-  a) Credit Facility Status = Written Off / Settled / Suit Filed / Wilful Defaulter / NPA / Substandard / Doubtful / Loss / Restructured / Post Written-off Settled / LSS
-  b) Amount Overdue > 0 — regardless of ownership (Individual, Joint, OR Guarantor)
-  c) Written-off Amount Total > 0
-  d) Date Closed present AND Current Balance > 0
-  e) Account is closed/open AND payment history contains "LSS" (Loss) status in any month
-  f) Ownership is Guarantor AND Current Balance > 0 (guarantor accounts always flag if balance outstanding)
-- IMPORTANT: Joint and Guarantor ownership accounts must be flagged exactly like Individual accounts — do NOT skip them
-- DO NOT flag accounts based only on DPD number in payment history (e.g. 29, 30, 60 days past due entries alone are not negative — only flag if Amount Overdue field is > 0)
-- For each negative account: lender, loan type, FULL account number, ownership, overdue, write-off amounts, settlement amount, current balance, suit details, Date of Last Payment, Date Closed, Date Reported & Certified
-
-STEP 2 — Output EXACTLY:
-
-[BUREAU_NAME] Credit Report Analysis
-━━━━━━━━━━━━━━━━━━━━━
-👤 Customer Details
-* Name: [FULL NAME]
-* DOB: [DD Mon YYYY]
-* PAN: [PAN NUMBER]
-* Report Date: [DD Mon YYYY]
-━━━━━━━━━━━━━━━━━━━━━
-📉 [SCORE_LABEL]: [SCORE] [EMOJI] ([RATING])
-* Control Number: [NUMBER] (only if present)
-[Score change line if previous score found]
-[ELIGIBILITY LINE]
-━━━━━━━━━━━━━━━━━━━━━
-⚠️ Negative Accounts ([N] Issues Found)
-1. [LENDER] — [FLAG] [EMOJI]
-   • Type: [loan type]
-   • A/C No: [FULL NUMBER — every digit]
-   • Ownership: [Joint/Guarantor only — skip if Individual]
-   • Overdue: ₹[amount] (only if > 0)
-   • Write-off Amount (Total): ₹[amount] (only if > 0)
-   • Write-off Amount (Principal): ₹[amount] (only if > 0)
-   • Settlement Amount: ₹[amount] (only if > 0)
-   • Current Balance: ₹[amount] (only for closed accounts with balance > 0)
-   • Suit Filed: Yes — [details] (only if exists)
-   • Date of Last Payment: [DD Mon YYYY] (MUST include if date exists)
-   • Date Closed: [DD Mon YYYY] (MUST include if date exists)
-   • Date Reported & Certified: [DD Mon YYYY] (MUST include if date exists)
-   • Status: [Written Off / Overdue / Guarantor Overdue / Settled / Suit Filed / Wilful Defaulter / NPA / LSS (Loss) / Post Written-off Settled / Closed with Outstanding Balance]
-[If none: ✅ No negative accounts found]
-━━━━━━━━━━━━━━━━━━━━━
-[TOTALS — use correct case:]
-CASE 1 — Only Current Balance accounts: 💰 Total Current Balance: ₹[SUM]
-CASE 2 — Only Overdue/Write-off accounts: 💰 Total Overdue Amount: ₹[SUM]
-CASE 3 — Both: show both lines separately
-CASE 4 — No negatives: 💰 Total Overdue Amount: ₹0
-━━━━━━━━━━━━━━━━━━━━━
-
-INDIVIDUAL FORMAT RULES:
-- Bureau: TransUnion CIBIL→"📊 TransUnion CIBIL" / Experian→"📊 Experian" / CRIF→"📊 CRIF High Mark" / Equifax→"📊 Equifax"
-- Score emoji: 🔴<650 | 🟠 650-699 | 🟡 700-749 | 🟢 750+
-- Eligibility: ❌<650 | ⚠️ 650-699 | ✅ 700-749 | 🌟 750+
-- Status emojis: Written-off 🔴 | Settled ⚠️ | Suit Filed 🔴 | Wilful Defaulter 🔴 | NPA 🔴 | Restructured 🟠 | Overdue 🔴 | Closed with Balance 🟠 | LSS (Loss) 🔴 | Guarantor Overdue 🔴
-- Account numbers: FULL number always — never XXXX
-- Dates: MUST include if present, skip only if dash (-)
-- NEGATIVE ACCOUNT RULE: Flag an account as negative if ANY of these apply — (1) Credit Facility Status = Written Off / Settled / Suit Filed / Wilful Defaulter / NPA / Substandard / Doubtful / Loss / LSS / Restructured / Post Written-off Settled, (2) Amount Overdue > 0, (3) Written-off Amount > 0, (4) Closed with Current Balance > 0, (5) LSS appears in payment history, (6) Guarantor/Joint ownership with Current Balance > 0. Apply this rule equally to Individual, Joint, and Guarantor owned accounts.
-- ⚠️ CRITICAL — SETTLED accounts: If Credit Facility Status = "Settled", flag it as NEGATIVE always — even if Amount Overdue = 0, Current Balance = 0, Written-off = 0. Show the Settlement Amount. A zero-balance settled account is still a negative account.
-- ⚠️ CRITICAL — Do NOT skip any account where Credit Facility Status field has any value other than dash (-). Every non-dash status must be evaluated and flagged if negative.
-- ⛔ NO REMARKS for Individual reports: Do NOT add any Remarks, Assessment, Veda Assessment, Dispute Scope, Recommended Action, Loan Eligibility, or any additional commentary section. The Individual report output must end exactly after the last ━━━ line following the Total Overdue Amount. Nothing after that. — ownership type does NOT exempt an account from flagging
-- Do NOT include DPD or payment history in the output
-- DPD clarification: If an open account shows DPD numbers (e.g. 29, 60) in payment history rows BUT the "Amount Overdue" field itself is blank/dash/zero, do NOT flag as negative — DPD in payment history alone is not a negative flag unless Amount Overdue field > 0
-- Output ONLY the formatted analysis block. Do NOT add any text, note, disclaimer, or explanation before or after the formatted block. Stop immediately after the last ━━━ line.`;
-
-
-
-var azCurrentTab = 'pdf';
-var azSelectedFile = null;
-var azSessionHistory = [];
-
-// ── Gemini Key Management ─────────────────────────────
-function saveGeminiKey() {
-  var key = document.getElementById('gemini-key-input').value.trim();
-  if (!key) {
-    document.getElementById('gemini-key-status').textContent = '❌ Invalid key format.';
-    document.getElementById('gemini-key-status').style.color = '#ef4444';
-    return;
-  }
-  localStorage.setItem('veda_ant_key', key);
-  document.getElementById('gemini-key-status').textContent = '✅ Key saved! You can now analyze reports.';
-  document.getElementById('gemini-key-status').style.color = '#22c55e';
-  document.getElementById('az-ready-badge').textContent = '✅ Ready — Upload a CIBIL PDF and click Analyze';
-  document.getElementById('az-ready-badge').style.color = '#4ade80';
-  document.getElementById('az-ready-badge').style.borderColor = '#22c55e';
-}
-
-function getGeminiKey() {
-  return localStorage.getItem('veda_ant_key') || '';
-}
-
-// Load saved key on page load
-(function loadKey() {
-  var key = localStorage.getItem('veda_ant_key') || '';
-  // Pre-fill WA token if saved
-  var waToken = localStorage.getItem('veda_wa_token') || '';
-  var banner = document.getElementById('gemini-setup-banner');
-  var badge = document.getElementById('az-ready-badge');
-  var inp = document.getElementById('gemini-key-input');
-  var st = document.getElementById('gemini-key-status');
-  if (key) {
-    if (inp) inp.value = key;
-    if (banner) banner.style.display = 'none';
-    if (st) { st.textContent = '✅ Key saved — ready to analyze.'; st.style.color = '#22c55e'; }
-    if (badge) { badge.textContent = '✅ Ready — Upload a CIBIL PDF and click Analyze'; badge.style.color = '#4ade80'; badge.style.borderColor = '#22c55e'; }
-  }
-})();
-
-// ── PDF Utilities ─────────────────────────────────────
-function cleanCibilText(text) {
-  return text
-    .replace(/Web\s*\n?search\s*\n?Copy\s*\n?/gi, '')
-    .replace(/Web\s*search\s*Copy/gi, '')
-    .replace(/https?:\/\/myscore\.cibil\.com[^\n]*/g, '')
-    .replace(/\d+\/\d+\/\d+,\s*\d+:\d+\s*[AP]M\s*CIBIL Report/g, '')
-    .replace(/--- Page \d+ ---/g, '')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-}
-
-// Convert PDF pages to base64 images for Claude vision
-async function extractPDFAsImages(file) {
-  var ab = await file.arrayBuffer();
-  var pdf = await pdfjsLib.getDocument({ data: ab }).promise;
-  var images = [];
-  var totalPages = Math.min(pdf.numPages, 16); // max 16 pages
-  for (var i = 1; i <= totalPages; i++) {
-    var page = await pdf.getPage(i);
-    var viewport = page.getViewport({ scale: 1.2 })  // Reduced from 1.5 to save tokens;
-    var canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    var ctx = canvas.getContext('2d');
-    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-    var base64 = canvas.toDataURL('image/jpeg', 0.72).split(',')[1];
-    images.push(base64);
-  }
-  return images;
-}
-
-// Try text extraction first, fall back to images if empty
-async function extractTextFromPDF(file) {
-  var ab = await file.arrayBuffer();
-  var loadingTask = pdfjsLib.getDocument({ data: ab });
-  var pdf = await loadingTask.promise;
-  var full = '';
-  var maxPages = pdf.numPages; // Extract ALL pages for complete analysis
-
-  // ── STEP 1: Try text extraction (works for digital PDFs) ──
-  for (var i = 1; i <= maxPages; i++) {
-    try {
-      var page = await pdf.getPage(i);
-      var textContent = await page.getTextContent();
-      var pt = '', lastY = null;
-      for (var j = 0; j < textContent.items.length; j++) {
-        var item = textContent.items[j];
-        if (!item.str || !item.str.trim()) continue;
-        if (lastY !== null && Math.abs(item.transform[5] - lastY) > 5) pt += '\n';
-        pt += item.str + ' ';
-        lastY = item.transform[5];
-      }
-      if (pt.trim()) full += pt + '\n';
-    } catch(e) {}
-  }
-
-  if (full.trim().length > 300) {
-    // Smart text reduction — keep all account details but limit payment history
-    var cleaned = cleanCibilText(full);
-    // If text is very long (>50k chars), trim payment history rows to save tokens
-    if (cleaned.length > 50000) {
-      // Remove repetitive monthly payment rows like "Jan 2024 0"
-      cleaned = cleaned.replace(/([A-Z][a-z]{2} 20\d{2} +\d+ *\n){3,}/g, '');
-      cleaned = cleaned.replace(/https?:\/\/myscore\.cibil\.com[^\n]*/g, '');
-    }
-    return cleaned;
-  }
-
-  // ── STEP 2: Scanned/image PDF — render pages as images for Claude Vision ──
-  setAzLoading(true, '🖼️ Scanned PDF detected — rendering pages as images for AI vision analysis…');
-  var imagePages = [];
-  var maxImgPages = Math.min(pdf.numPages, 5); // Reduced from 8 to save tokens // Claude supports up to ~20 images, use 8 for speed
-
-  for (var pi = 1; pi <= maxImgPages; pi++) {
-    try {
-      setAzLoading(true, '🖼️ Processing page ' + pi + ' of ' + maxImgPages + '…');
-      var pg = await pdf.getPage(pi);
-      var scale = 1.8; // Higher scale = better OCR quality
-      var viewport = pg.getViewport({ scale: scale });
-      var canvas = document.createElement('canvas');
-      canvas.width  = viewport.width;
-      canvas.height = viewport.height;
-      var ctx = canvas.getContext('2d');
-      await pg.render({ canvasContext: ctx, viewport: viewport }).promise;
-      // Convert to JPEG base64 (smaller than PNG)
-      var b64 = canvas.toDataURL('image/jpeg', 0.72).split(',')[1];
-      imagePages.push(b64);
-    } catch(pgErr) {
-      console.warn('Image page ' + pi + ' error:', pgErr.message);
-    }
-  }
-
-  if (imagePages.length === 0) {
-    throw new Error('Could not read this PDF. Please use the Paste Text tab and paste the report text manually.');
-  }
-
-  // Store images for use in analyzeReport — return special marker
-  window._azImagePages = imagePages;
-  return '__IMAGE_PDF__'; // Signal to analyzeReport to use vision API
-}
-
-// ── Tab switching ─────────────────────────────────────
-window.switchAzTab = function(tab) {
-  azCurrentTab = tab;
-  document.getElementById('tabPdf').classList.toggle('active', tab === 'pdf');
-  document.getElementById('tabText').classList.toggle('active', tab === 'text');
-  document.getElementById('tabCompany').classList.toggle('active', tab === 'company');
-  document.getElementById('pdfTab').style.display = tab === 'pdf' ? 'block' : 'none';
-  document.getElementById('textTab').style.display = tab === 'text' ? 'block' : 'none';
-  document.getElementById('companyTab').style.display = tab === 'company' ? 'block' : 'none';
-  // Hide report type selector for company tab
-  document.getElementById('reportTypeRow').style.display = tab === 'company' ? 'none' : 'flex';
-  if (tab === 'company') { currentReportType = 'company'; }
-};
-
-var currentReportType = 'individual';
-window.setReportType = function(type) {
-  currentReportType = type;
-  document.getElementById('rtIndividual').style.background = type === 'individual' ? '#0ea5e9' : '#0f172a';
-  document.getElementById('rtIndividual').style.borderColor = type === 'individual' ? '#0ea5e9' : '#334155';
-  document.getElementById('rtIndividual').style.color = type === 'individual' ? '#fff' : '#64748b';
-  document.getElementById('rtCompany').style.background = type === 'company' ? '#0ea5e9' : '#0f172a';
-  document.getElementById('rtCompany').style.borderColor = type === 'company' ? '#0ea5e9' : '#334155';
-  document.getElementById('rtCompany').style.color = type === 'company' ? '#fff' : '#64748b';
-};
-
-// ── Drag & Drop ───────────────────────────────────────
-window.handleDragOver = function(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('dragover'); };
-window.handleDragLeave = function() { document.getElementById('dropZone').classList.remove('dragover'); };
-window.handleDrop = function(e) {
-  e.preventDefault(); document.getElementById('dropZone').classList.remove('dragover');
-  var f = e.dataTransfer.files[0];
-  if (f && f.type === 'application/pdf') setAzFile(f);
-  else alert('Please drop a PDF file.');
-};
-window.handleFileSelect = function(e) { if (e.target.files[0]) setAzFile(e.target.files[0]); };
-
-function setAzFile(file) {
-  azSelectedFile = file;
-  document.getElementById('fpName').textContent = file.name;
-  document.getElementById('fpSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
-  document.getElementById('dropZone').style.display = 'none';
-  document.getElementById('filePreview').classList.add('visible');
-}
-window.removeFile = function() {
-  azSelectedFile = null;
-  document.getElementById('fileInput').value = '';
-  document.getElementById('dropZone').style.display = 'flex';
-  document.getElementById('filePreview').classList.remove('visible');
-};
-
-// ── Loading ───────────────────────────────────────────
-function setAzLoading(active, msg) {
-  document.getElementById('loadingBar').classList.toggle('visible', active);
-  document.getElementById('loadingMsg').textContent = msg || 'Analyzing…';
-  document.getElementById('analyzeBtn').disabled = active;
-}
-
-// ── Main analyze function ─────────────────────────────
-window.analyzeReport = async function() {
-  var key = getGeminiKey();
-  if (!key) {
-    alert('Please enter your free Gemini API key first (see the purple box above).');
-    return;
-  }
-  var lang = document.getElementById('langSelect').value;
-  var langNote = lang !== 'english'
-    ? '\n\nRespond in ' + (lang === 'telugu' ? 'Telugu' : 'Hindi') + ' where possible, keep numbers/names/PAN/accounts in English.'
-    : '';
-  var reportText = '';
-
-  if (azCurrentTab === 'pdf') {
-    if (!azSelectedFile) { alert('Please upload a CIBIL PDF file first.'); return; }
-    setAzLoading(true, '📄 Extracting PDF content… please wait');
-    window._azImagePages = null; // Reset
-    try {
-      reportText = await extractTextFromPDF(azSelectedFile);
-    } catch (err) {
-      setAzLoading(false);
-      alert('Failed to read PDF: ' + err.message);
-      return;
-    }
-  } else {
-    reportText = document.getElementById('inputText').value.trim();
-    if (!reportText) { alert('Please paste CIBIL report data first.'); return; }
-  }
-
-  setAzLoading(true, '🔍 Analyzing CIBIL report with AI… please wait');
-  document.getElementById('outputCard').classList.remove('visible');
-  document.getElementById('resultBox').textContent = '';
-
-  // Build user message — either text or image array (for scanned PDFs)
-  var promptPrefix = currentReportType === 'company'
-    ? 'Analyze this Company CIBIL Credit Report and give the complete formatted analysis in the COMPANY REPORT FORMAT. Show FULL account numbers:\n\n'
-    : 'Analyze this CIBIL report and give the complete formatted analysis. Show FULL account numbers:\n\n';
-
-  var userContent;
-  if (reportText === '__IMAGE_PDF__' && window._azImagePages && window._azImagePages.length > 0) {
-    // ── Scanned PDF: send page images to Claude Vision ──
-    setAzLoading(true, '🤖 Sending ' + window._azImagePages.length + ' pages to Claude Vision AI…');
-    userContent = [];
-    userContent.push({ type: 'text', text: promptPrefix + 'This is a scanned CIBIL PDF. I have rendered ' + window._azImagePages.length + ' pages as images. Please read all pages carefully and provide the complete analysis.' + langNote });
-    window._azImagePages.forEach(function(b64, idx) {
-      userContent.push({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } });
-    });
-  } else {
-    // ── Digital PDF or pasted text: send as text ──
-    userContent = [{ type: 'text', text: promptPrefix + reportText + langNote }];
-  }
-
-  try {
-    var response = await fetch(
-      'https://api.anthropic.com/v1/messages',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': key,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 2500,
-          system: GEMINI_PROMPT,
-          messages: [{ role: 'user', content: userContent }]
-        })
-      }
-    );
-    var data = await response.json();
-
-    if (data.error) {
-      var errMsg = data.error.message || 'Unknown error';
-      var errType = data.error.type || '';
-      if (errType === 'invalid_request_error') {
-        errMsg = 'API Key invalid or expired. Please go to ⚙️ Keys and update your Anthropic API key.';
-      } else if (errMsg.includes('overloaded')) {
-        errMsg = 'Claude API is busy. Please wait 30 seconds and try again.';
-      } else if (errMsg.includes('rate_limit')) {
-        errMsg = 'Rate limit reached. Please wait a minute and try again.';
-      }
-      throw new Error(errMsg);
-    }
-
-    var result = '';
-    if (data.content) {
-      result = data.content.map(function(b) { return b.text || ''; }).join('').trim();
-    }
-    if (!result) throw new Error('No response. Please try again.');
-
-    // Strip any extra text after the last ━━━ divider line
-    var lastDivider = result.lastIndexOf('━━━');
-    if (lastDivider > 0) {
-      // Keep everything up to and including the last ━━━ line
-      var afterDivider = result.indexOf('\n', lastDivider);
-      if (afterDivider > 0) result = result.substring(0, afterDivider).trimEnd();
-    }
-    document.getElementById('resultBox').textContent = result;
-    document.getElementById('resultBox').style.display = 'block';
-    document.getElementById('resultEdit').style.display = 'none';
-    document.getElementById('editBtn').textContent = '✏️ Edit';
-    document.getElementById('outputCard').classList.add('visible');
-
-    var nm = result.match(/\* Name:\s*(.+)/);
-    var sm = result.match(/CIBIL Score:\s*(\d+)/);
-    var name = nm ? nm[1].trim() : 'Unknown';
-    var score = sm ? parseInt(sm[1]) : null;
-    azSessionHistory.unshift({ name: name, score: score, result: result, time: new Date().toLocaleTimeString() });
-    renderAzHistory();
-    incrementReportCount();
-    document.getElementById('outputCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  } catch (err) {
-    document.getElementById('resultBox').textContent = '❌ Error: ' + err.message;
-    document.getElementById('outputCard').classList.add('visible');
-  } finally {
-    setAzLoading(false);
-  }
-};
-
-// ── History ───────────────────────────────────────────
-function getScoreBadgeAz(score) {
-  if (!score) return '';
-  if (score < 650) return '<span style="background:#7f1d1d;color:#fca5a5;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">🔴 ' + score + '</span>';
-  if (score < 700) return '<span style="background:#7c2d12;color:#fdba74;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">🟠 ' + score + '</span>';
-  if (score < 750) return '<span style="background:#713f12;color:#fde047;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">🟡 ' + score + '</span>';
-  return '<span style="background:#14532d;color:#86efac;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;">🟢 ' + score + '</span>';
-}
-
-function renderAzHistory() {
-  var list = document.getElementById('historyList');
-  if (!list) return; // element removed — session history disabled
-  if (!azSessionHistory.length) {
-    list.innerHTML = '<p class="empty-msg">No analyses yet.</p>';
-    return;
-  }
-  list.innerHTML = azSessionHistory.slice(0, 15).map(function(h, i) {
-    return '<div class="history-item" onclick="loadAzHistory(' + i + ')">' +
-      '<span>👤 ' + h.name + '</span>' +
-      '<div class="hi-meta">' + getScoreBadgeAz(h.score) + '<span>' + h.time + '</span></div>' +
-      '</div>';
-  }).join('');
-}
-
-window.loadAzHistory = function(i) {
-  document.getElementById('resultBox').textContent = azSessionHistory[i].result;
-  document.getElementById('resultBox').style.display = 'block';
-  document.getElementById('resultEdit').style.display = 'none';
-  document.getElementById('editBtn').textContent = '✏️ Edit';
-  document.getElementById('outputCard').classList.add('visible');
-  document.getElementById('outputCard').scrollIntoView({ behavior: 'smooth' });
-};
-
-// ── Edit / Copy / Download ────────────────────────────
-window.toggleEdit = function() {
-  var box = document.getElementById('resultBox');
-  var edit = document.getElementById('resultEdit');
-  var btn = document.getElementById('editBtn');
-  if (edit.style.display !== 'none') {
-    box.textContent = edit.value;
-    edit.style.display = 'none';
-    box.style.display = 'block';
-    btn.textContent = '✏️ Edit';
-    btn.classList.remove('active-edit');
-  } else {
-    edit.value = box.textContent;
-    box.style.display = 'none';
-    edit.style.display = 'block';
-    edit.focus();
-    btn.textContent = '💾 Save';
-    btn.classList.add('active-edit');
-  }
-};
-
-window.copyResult = function(btn) {
-  var text = document.getElementById('resultBox').style.display !== 'none'
-    ? document.getElementById('resultBox').textContent
-    : document.getElementById('resultEdit').value;
-  navigator.clipboard.writeText(text).then(function() {
-    btn.textContent = '✅ Copied!';
-    setTimeout(function() { btn.textContent = '📋 Copy'; }, 2000);
-  });
-};
-
-window.downloadResult = function() {
-  var text = document.getElementById('resultBox').textContent;
-  var nm = text.match(/\* Name:\s*(.+)/);
-  var name = nm ? nm[1].trim().replace(/\s+/g, '_') : 'CIBIL';
-  var blob = new Blob([text], { type: 'text/plain' });
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'CIBIL_' + name + '.txt';
-  a.click();
-};
-
-// ── Report Counter (Firebase REST) ───────────────────
-function loadReportCounts() {
-  var today = new Date().toISOString().split('T')[0];
-  var month = today.slice(0, 7);
-  var monthLabel = new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
-  var todayEl = document.getElementById('counter-today');
-  var totalEl = document.getElementById('counter-total');
-  var monthEl = document.getElementById('counter-month');
-  var dateEl = document.getElementById('counter-date');
-  var monthLabelEl = document.getElementById('counter-month-label');
-  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-  if (monthLabelEl) monthLabelEl.textContent = monthLabel;
-
-  fetch('https://veda-cibils-default-rtdb.asia-southeast1.firebasedatabase.app/reportCounts.json')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (!data) data = {};
-      var total = 0, todayCount = 0, monthCount = 0;
-      Object.keys(data).forEach(function(date) {
-        var vals = Object.values(data[date]);
-        var dayTotal = vals.reduce(function(a, b) { return a + (b || 0); }, 0);
-        total += dayTotal;
-        if (date === today) todayCount = dayTotal;
-        if (date.startsWith(month)) monthCount += dayTotal;
-      });
-      if (totalEl) totalEl.textContent = total;
-      if (todayEl) todayEl.textContent = todayCount;
-      if (monthEl) monthEl.textContent = monthCount;
-    })
-    .catch(function() {
-      if (totalEl) totalEl.textContent = '—';
-      if (todayEl) todayEl.textContent = '—';
-      if (monthEl) monthEl.textContent = '—';
-    });
-}
-
-function incrementReportCount() {
-  var today = new Date().toISOString().split('T')[0];
-  var user = (sessionStorage.getItem('veda_user') || 'Unknown').replace(/[^a-zA-Z0-9]/g, '_');
-  var dbUrl = 'https://veda-cibils-default-rtdb.asia-southeast1.firebasedatabase.app/reportCounts/' + today + '/' + user + '.json';
-  fetch(dbUrl)
-    .then(function(r) { return r.json(); })
-    .then(function(current) {
-      return fetch(dbUrl, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify((current || 0) + 1) });
-    })
-    .then(function() { loadReportCounts(); })
-    .catch(function(e) { console.warn('Counter error', e); });
+if(saved){
+  currentUser=saved;
+  userRole=sessionStorage.getItem('veda_role')||'team';
+  partnerCompany=sessionStorage.getItem('veda_partner')||null;
+  document.getElementById('public-site').classList.add('hidden');
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('app-shell').classList.remove('hidden');
+  applyRoleUI();
+  initApp();
+} else {
+  showPublic('home');
 }
 </script>
-
 <script>
 
   // Set today's date as default - wait for DOM
@@ -5018,12 +4963,12 @@ const MONTHS = ['January','February','March','April','May','June','July','August
 function render() {
   loadData();
   document.getElementById('month-label').textContent = MONTHS[currentMonth] + ' ' + currentYear;
-  renderTable();
+  attRenderSheet();
   renderSalary();
   renderSummary();
 }
 
-function renderTable() {
+function attRenderSheet() {
   const days = daysInMonth(currentYear, currentMonth);
   const today = new Date();
   const isThisMonth = today.getFullYear() === currentYear && today.getMonth() === currentMonth;
@@ -5298,6 +5243,9 @@ window.attPrintPage      = printPage;
 window.attShowToast      = attShowToast;
 window.attToggleCell     = toggleCell;
 window.attRenderAll      = render;
+window.attRenderSheet     = attRenderSheet;
+if (typeof window._vedaClientRenderTable === 'function') window.renderTable = window._vedaClientRenderTable;
+
 })();
 
 // ── Function aliases — HTML uses att* prefix ──
