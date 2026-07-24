@@ -3198,21 +3198,30 @@ function renderPartnersTable(){
   }).join('');
 }
 
-window.submitCibilRequest = function(e){
+function submitCibilRequest(e){
   e.preventDefault();
   var fd = new FormData(e.target);
-  var msg = 'Required details for cibil report and analysis\\n\\n'
-    + 'Full Name: ' + fd.get('fullName') + '\\n'
-    + 'Mail ID: ' + fd.get('email') + '\\n'
-    + 'Mobile number: ' + fd.get('mobile') + '\\n'
-    + 'Pan number: ' + String(fd.get('pan')||'').toUpperCase() + '\\n'
-    + 'Date of birth: ' + fd.get('dob') + '\\n'
-    + 'Pincode Address: ' + fd.get('address') + '\\n\\n'
-    + 'please send this details for cibil report and analysis report\\n\\n'
-    + 'Best Regards\\nVeda cibil Consultancy';
+  var dobRaw = String(fd.get('dob') || '');
+  var dobFmt = dobRaw;
+  if(/^\d{4}-\d{2}-\d{2}$/.test(dobRaw)){
+    var p = dobRaw.split('-');
+    dobFmt = p[2] + '/' + p[1] + '/' + p[0];
+  }
+  var details =
+    'Full Name. ' + fd.get('fullName') + '\n' +
+    'Mail ID. ' + fd.get('email') + '\n' +
+    'Mobile number. ' + fd.get('mobile') + '\n' +
+    'Pan number. ' + String(fd.get('pan')||'').toUpperCase() + '\n' +
+    'Date of birth. ' + dobFmt + '\n' +
+    'Pincode Address. ' + fd.get('address');
+  var msg =
+    'Required details for cibil report and analysis\n\n' +
+    '```\n' + details + '\n```\n\n' +
+    'Details are shared kindly generate the report';
   var url = 'https://wa.me/91' + PUBLIC_WA + '?text=' + encodeURIComponent(msg);
   window.open(url, '_blank');
-};
+}
+window.submitCibilRequest = submitCibilRequest;
 
 function toggleChatbot(){
   document.getElementById('chatbot-panel').classList.toggle('hidden');
