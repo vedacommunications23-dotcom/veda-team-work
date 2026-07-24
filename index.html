@@ -1229,6 +1229,15 @@ body.partner-mode .mod-tab[onclick*="attendance"],
 body.partner-mode .mod-tab[onclick*="partners"]{display:none!important;}
 body.partner-mode #ch-tabs-wrap{display:none!important;}
 body.partner-mode #tab-reports{display:none!important;}
+/* Only show Client Tracker (and its Reports) when that module is active */
+body:not(.app-mod-tracker) #module-tracker{display:none!important;}
+body:not(.app-mod-invoice) #module-invoice{display:none!important;}
+body:not(.app-mod-partners) #module-partners{display:none!important;}
+body:not(.app-mod-crm) #module-crm{display:none!important;}
+body:not(.app-mod-attendance) #module-attendance{display:none!important;}
+body:not(.app-mod-tracker) #tab-reports,
+body:not(.app-mod-tracker) #tab-dashboard,
+body:not(.app-mod-tracker) #tab-clients{display:none!important;}
 body.partner-mode .sub-tab[onclick*="reports"]{display:none!important;}
 
 @media(max-width:900px){
@@ -1571,11 +1580,11 @@ body.partner-mode .sub-tab[onclick*="reports"]{display:none!important;}
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
         <div class="panel">
           <div class="panel-header" style="background:var(--navy);"><span class="panel-title">⏳ Pending & Active Cases</span></div>
-          <div id="report-pending" style="padding:14px 16px;max-height:240px;overflow-y:auto;"></div>
+          <div id="dash-pending" style="padding:14px 16px;max-height:240px;overflow-y:auto;"></div>
         </div>
         <div class="panel">
           <div class="panel-header" style="background:var(--navy);"><span class="panel-title">🏦 Top Issues by Category</span></div>
-          <div id="report-issues" style="padding:14px 16px;max-height:240px;overflow-y:auto;"></div>
+          <div id="dash-issues" style="padding:14px 16px;max-height:240px;overflow-y:auto;"></div>
         </div>
       </div>
     </div>
@@ -1859,22 +1868,11 @@ body.partner-mode .sub-tab[onclick*="reports"]{display:none!important;}
         <span class="status-badge" id="prev-badge">Payment Pending</span>
       </div>
 
-    </div>
-  </div>
-</div>
-
-
-    </div>
-  </div>
-
-</div>
-
-
-
-    </div>
-  </div>
-
-<!-- ═══════════ MODULE 4: CRM ═══════════ -->
+    </div><!-- #invoice -->
+  </div><!-- .preview-wrap -->
+</div><!-- .page-wrap -->
+    </div><!-- max-width -->
+  </div><!-- #module-invoice -->
 
   <!-- MODULE: CHANNEL PARTNERS (team only) -->
   <div id="module-partners" class="hidden main">
@@ -3015,6 +3013,7 @@ function applyRoleUI() {
     var si = document.getElementById('search-input');
     if(si) si.placeholder = 'Search serial, name, mobile…';
   } else {
+    if(!document.body.className.match(/app-mod-/)) switchModule('tracker');
     var si2 = document.getElementById('search-input');
     if(si2) si2.placeholder = 'Search serial, name, mobile, email…';
   }
@@ -3339,7 +3338,7 @@ window.doLogout=function(){
   sessionStorage.removeItem('veda_partner');
   sessionStorage.removeItem('veda_partner_code');
   currentUser=null;userRole='team';partnerCompany=null;partnerCode=null;
-  document.body.classList.remove('partner-mode');
+  document.body.classList.remove('partner-mode','app-mod-tracker','app-mod-invoice','app-mod-partners','app-mod-crm','app-mod-attendance');
   document.getElementById('app-shell').classList.add('hidden');
   document.getElementById('login-pass').value='';
   showPublic('home');
@@ -3384,18 +3383,33 @@ function initApp(){
 }
 
 window.switchModule=function(m){
+  document.body.classList.remove('app-mod-tracker','app-mod-invoice','app-mod-partners','app-mod-crm','app-mod-attendance');
+  document.body.classList.add('app-mod-'+m);
   ['module-tracker','module-invoice','module-partners','module-crm','module-attendance'].forEach(function(id){
     var el=document.getElementById(id);
-    if(el) el.classList.toggle('hidden', id!=='module-'+m);
+    if(!el) return;
+    var show = (id==='module-'+m);
+    el.classList.toggle('hidden', !show);
+    el.style.display = show ? '' : 'none';
   });
+  // Keep Reports inside Client Tracker only — never show on Invoice / CRM / Attendance / Partners
+  if(m!=='tracker'){
+    ['dashboard','clients','reports'].forEach(function(id){
+      var t=document.getElementById('tab-'+id);
+      if(t){ t.classList.add('hidden'); }
+    });
+  } else {
+    // Restore a tracker tab if all were hidden while visiting other modules
+    var anyVisible = ['dashboard','clients','reports'].some(function(id){
+      var t=document.getElementById('tab-'+id);
+      return t && !t.classList.contains('hidden');
+    });
+    if(!anyVisible) showTab(userRole==='partner' ? 'clients' : 'dashboard');
+  }
   document.querySelectorAll('.mod-tab').forEach(function(b,i){
     b.classList.toggle('active',['tracker','invoice','partners','crm','attendance'][i]===m);
   });
-  if(m==='crm') crmBuildContactList();
-  if(m==='invoice'){
-    var el=document.getElementById('invDate');
-    if(el&&!el.value){el.value=new Date().toISOString().split('T')[0];if(typeof updateDate==='function')updateDate();if(typeof generateInvoice==='function')generateInvoice();}
-  }
+  if(m==='crm' && typeof crmBuildContactList==='function') crmBuildContactList();
   if(m==='invoice'){
     var el=document.getElementById('invDate');
     if(el&&!el.value){el.value=new Date().toISOString().split('T')[0];if(typeof updateDate==='function')updateDate();if(typeof generateInvoice==='function')generateInvoice();}
@@ -3482,7 +3496,7 @@ function renderDashboard(){
   // Pending cases
   var pending=arr.filter(function(c){return c.status==='Logged In'||c.status==='Pending'||c.status==='In Progress';})
     .sort(function(a,b){return (b._key||'').localeCompare(a._key||'');}).slice(0,8);
-  var pe=document.getElementById('report-pending');
+  var pe=document.getElementById('dash-pending');
   if(pe){
     if(!pending.length){pe.innerHTML='<div style="color:var(--text3);font-size:13px;text-align:center;padding:12px;">✅ No pending cases</div>';}
     else{pe.innerHTML=pending.map(function(c){
@@ -3502,7 +3516,7 @@ function renderDashboard(){
     (c.bankIssues||[]).forEach(function(b){var l=(b.type||'Other').trim();bc[l]=(bc[l]||0)+1;});
   });
   var sorted=Object.keys(bc).map(function(k){return[k,bc[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,7);
-  var ie=document.getElementById('report-issues');
+  var ie=document.getElementById('dash-issues');
   if(ie){
     if(!sorted.length){ie.innerHTML='<div style="color:var(--text3);font-size:13px;text-align:center;padding:12px;">No issues data yet</div>';}
     else{var mx=sorted[0][1]||1;ie.innerHTML=sorted.map(function(it){
