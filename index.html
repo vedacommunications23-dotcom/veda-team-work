@@ -2885,7 +2885,7 @@ window.sendTrackerWA = async function() {
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, push, set, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, push, set, onValue, remove, update, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const FC={apiKey:"AIzaSyCYoaaNnrddUIy2Okod1Bw1vgq1SiLzxxA",authDomain:"veda-cibils.firebaseapp.com",databaseURL:"https://veda-cibils-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"veda-cibils",storageBucket:"veda-cibils.firebasestorage.app",messagingSenderId:"391713982511",appId:"1:391713982511:web:64362c84e4f22b33a1deda"};
 const app=initializeApp(FC),db=getDatabase(app);
@@ -2924,9 +2924,58 @@ let userRole = 'team'; // 'team' | 'partner'
 let partnerCompany = null;
 let partnerCode = null;
 let channelPartners = {
-  'VP001': { code: 'VP001', company: 'Prakash', password: 'Veda@VP001', active: true },
-  'VP002': { code: 'VP002', company: 'Mohan', password: 'Veda@VP002', active: true }
+  'VP001': { code: 'VP001', company: 'Prakash', password: '', active: true },
+  'VP002': { code: 'VP002', company: 'Mohan', password: '', active: true }
 };
+let partnersListenerBound = false;
+let partnersSeedDone = false;
+
+function applyChannelPartnersSnapshot(v){
+  if(v && typeof v==='object'){
+    channelPartners = v;
+    // One-time migrate legacy name keys → VP codes (do not overwrite existing passwords)
+    if(channelPartners.Prakash && !channelPartners.VP001){
+      set(ref(db,'channelPartners/VP001'),{code:'VP001',company:channelPartners.Prakash.company||'Prakash',password:channelPartners.Prakash.password||'',active:true,ts:Date.now()});
+    }
+    if(channelPartners.Mohan && !channelPartners.VP002){
+      set(ref(db,'channelPartners/VP002'),{code:'VP002',company:channelPartners.Mohan.company||'Mohan',password:channelPartners.Mohan.password||'',active:true,ts:Date.now()});
+    }
+  } else if(!partnersSeedDone){
+    partnersSeedDone = true;
+    // Empty DB — seed shell records; team sets passwords in Partners tab
+    set(ref(db,'channelPartners/VP001'),{code:'VP001',company:'Prakash',password:'',active:true,ts:Date.now()});
+    set(ref(db,'channelPartners/VP002'),{code:'VP002',company:'Mohan',password:'',active:true,ts:Date.now()});
+  }
+  fillPartnerLoginSelect();
+  if(typeof afterPartnersChanged === 'function'){
+    try { afterPartnersChanged(); } catch(e) {}
+  }
+}
+
+function bindChannelPartners(){
+  if(partnersListenerBound) return;
+  partnersListenerBound = true;
+  onValue(ref(db,'channelPartners'),function(s){
+    applyChannelPartnersSnapshot(s.val());
+  }, function(e){
+    console.log('Partners sync error', e);
+  });
+}
+bindChannelPartners();
+
+function findPartnerEntry(codeOrKey){
+  if(!codeOrKey) return null;
+  if(channelPartners[codeOrKey]) return { key: codeOrKey, p: channelPartners[codeOrKey] };
+  var want = String(codeOrKey).toUpperCase();
+  var keys = Object.keys(channelPartners);
+  for(var i=0;i<keys.length;i++){
+    var k = keys[i];
+    var p = channelPartners[k];
+    if(!p || p.active===false) continue;
+    if(String(p.code||k).toUpperCase()===want) return { key: k, p: p };
+  }
+  return null;
+}
 
 function showPublic(page) {
   document.getElementById('public-site').classList.remove('hidden');
@@ -3298,34 +3347,66 @@ function showToast(msg,type){var t=document.getElementById('toast');t.textConten
 
 window.doLogin=function(){
   var type=(document.getElementById('login-type')||{}).value||'team';
-  var pass=document.getElementById('login-pass').value;
+  var pass=(document.getElementById('login-pass').value||'').trim();
   if(type==='partner'){
     var codeKey=document.getElementById('login-partner').value;
     if(!codeKey){showToast('Please select your partner code.','error');return;}
-    var p=channelPartners[codeKey];
-    if(!p||p.active===false){showToast('Partner not found.','error');return;}
-    if(pass!==(p.password||'')){showToast('Wrong password.','error');return;}
-    userRole='partner';
-    partnerCode=(p.code||codeKey).toString().toUpperCase();
-    partnerCompany=p.company||partnerCode;
-    currentUser=partnerCode;
-    sessionStorage.setItem('veda_user',currentUser);
-    sessionStorage.setItem('veda_role','partner');
-    sessionStorage.setItem('veda_partner',partnerCompany);
-    sessionStorage.setItem('veda_partner_code',partnerCode);
-  } else {
-    var emp=document.getElementById('login-emp').value;
-    if(!emp){showToast('Please select your name.','error');return;}
-    if(PASSWORDS[emp]&&pass!==PASSWORDS[emp]){showToast('Wrong password.','error');return;}
-    userRole='team';
-    partnerCompany=null;
-    partnerCode=null;
-    currentUser=emp;
-    sessionStorage.setItem('veda_user',emp);
-    sessionStorage.setItem('veda_role','team');
-    sessionStorage.removeItem('veda_partner');
-    sessionStorage.removeItem('veda_partner_code');
+    if(!pass){showToast('Enter password.','error');return;}
+    var btn=document.querySelector('.login-btn');
+    if(btn){btn.disabled=true;btn.textContent='Checking…';}
+    // Always verify against live Firebase so all devices use the same password
+    get(ref(db,'channelPartners/'+codeKey)).then(function(snap){
+      var p=snap.val();
+      if(!p){
+        return get(ref(db,'channelPartners')).then(function(allSnap){
+          var all=allSnap.val()||{};
+          channelPartners=all;
+          var found=findPartnerEntry(codeKey);
+          if(!found){ showToast('Partner not found.','error'); return null; }
+          return { key: found.key, p: found.p };
+        });
+      }
+      channelPartners[codeKey]=p;
+      return { key: codeKey, p: p };
+    }).then(function(entry){
+      if(btn){btn.disabled=false;btn.textContent='Sign in';}
+      if(!entry) return;
+      var p=entry.p;
+      if(!p||p.active===false){showToast('Partner not found or disabled.','error');return;}
+      var saved=String(p.password||'').trim();
+      if(!saved){showToast('Password not set yet. Ask office to set it in Partners.','error');return;}
+      if(pass!==saved){showToast('Wrong password.','error');return;}
+      userRole='partner';
+      partnerCode=(p.code||entry.key).toString().toUpperCase();
+      partnerCompany=p.company||partnerCode;
+      currentUser=partnerCode;
+      sessionStorage.setItem('veda_user',currentUser);
+      sessionStorage.setItem('veda_role','partner');
+      sessionStorage.setItem('veda_partner',partnerCompany);
+      sessionStorage.setItem('veda_partner_code',partnerCode);
+      document.getElementById('public-site').classList.add('hidden');
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('app-shell').classList.remove('hidden');
+      applyRoleUI();
+      initApp();
+    }).catch(function(e){
+      if(btn){btn.disabled=false;btn.textContent='Sign in';}
+      showToast('Login check failed. Check internet and try again.','error');
+      console.log(e);
+    });
+    return;
   }
+  var emp=document.getElementById('login-emp').value;
+  if(!emp){showToast('Please select your name.','error');return;}
+  if(PASSWORDS[emp]&&pass!==PASSWORDS[emp]){showToast('Wrong password.','error');return;}
+  userRole='team';
+  partnerCompany=null;
+  partnerCode=null;
+  currentUser=emp;
+  sessionStorage.setItem('veda_user',emp);
+  sessionStorage.setItem('veda_role','team');
+  sessionStorage.removeItem('veda_partner');
+  sessionStorage.removeItem('veda_partner_code');
   document.getElementById('public-site').classList.add('hidden');
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app-shell').classList.remove('hidden');
@@ -3354,29 +3435,7 @@ function initApp(){
   document.getElementById('sync-user').textContent='Logged in: '+currentUser;
   setSS('syncing','Connecting…');
   if(window._checkKeysOnLogin) window._checkKeysOnLogin();
-  onValue(ref(db,'channelPartners'),function(s){
-    var v=s.val();
-    if(v && typeof v==='object'){
-      channelPartners=v;
-      if(channelPartners.Prakash && !channelPartners.VP001){
-        set(ref(db,'channelPartners/VP001'),{code:'VP001',company:channelPartners.Prakash.company||'Prakash',password:'Veda@VP001',active:true,ts:Date.now()});
-      }
-      if(channelPartners.Mohan && !channelPartners.VP002){
-        set(ref(db,'channelPartners/VP002'),{code:'VP002',company:channelPartners.Mohan.company||'Mohan',password:'Veda@VP002',active:true,ts:Date.now()});
-      }
-      // Keep coded partners on unique passwords
-      if(channelPartners.VP001 && channelPartners.VP001.password==='partner123'){
-        update(ref(db,'channelPartners/VP001'),{password:'Veda@VP001',code:'VP001'});
-      }
-      if(channelPartners.VP002 && channelPartners.VP002.password==='partner123'){
-        update(ref(db,'channelPartners/VP002'),{password:'Veda@VP002',code:'VP002'});
-      }
-    } else {
-      set(ref(db,'channelPartners/VP001'),{code:'VP001',company:'Prakash',password:'Veda@VP001',active:true,ts:Date.now()});
-      set(ref(db,'channelPartners/VP002'),{code:'VP002',company:'Mohan',password:'Veda@VP002',active:true,ts:Date.now()});
-    }
-    afterPartnersChanged();
-  });
+  // channelPartners already live-synced from page load via bindChannelPartners()
   onValue(ref(db,'clients'),function(s){clients=s.val()||{};setSS('online','Live — all changes synced');renderDashboard();renderTable();renderReports();renderPartnersTable();},function(e){setSS('error','Connection error');showToast('Firebase error: '+e.message,'error');});
   onValue(ref(db,'activityLog'),function(s){var r=s.val()||{};activityLog=Object.values(r).sort(function(a,b){return (b.ts||0)-(a.ts||0);});renderActivityLog();});
   applyRoleUI();
